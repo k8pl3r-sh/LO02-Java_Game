@@ -2,7 +2,9 @@
  * 
  */
 /**
- * 
+
+ * @author juliencalonne
+ *
  */
-module Karmaka {
+module test_projet_LO02 {
 }
