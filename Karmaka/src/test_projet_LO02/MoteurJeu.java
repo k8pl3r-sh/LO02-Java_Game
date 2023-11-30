@@ -1,7 +1,7 @@
 package test_projet_LO02;
 
-import cartes.Carte;
-import cartes.Jubile;
+import cartes.*;
+
 
 public class MoteurJeu {
 	
@@ -17,10 +17,10 @@ public class MoteurJeu {
 	public static void main(String[] args) {
 		
 		// Essais d'ajouts de carte dans une pile fosse
-		Jubile carte1 = new Jubile("carte1", "fait jsp quoi", 3);
-		Jubile carte2 = new Jubile("carte2", "fait jsp quoi", 3);
-		Jubile carte3 = new Jubile("carte3", "fait jsp quoi", 3);
-		Jubile carte4 = new Jubile("carte4", "fait jsp quoi", 3);
+		Incarnation carte1 = new Incarnation();
+		Vol carte2 = new Vol();
+		Vol carte3 = new Vol();
+		Vol carte4 = new Vol();
 		Lieu fosse1 = new Lieu();
 		fosse1.addCarte(carte1);
 		fosse1.addCarte(carte2);
