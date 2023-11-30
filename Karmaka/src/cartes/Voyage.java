@@ -1,10 +1,10 @@
 package cartes;
 
-public class Jubile extends CarteVerte {
+public class Voyage extends CarteVerte {
 	static int compteurInstance = 0;
 
-	public Jubile() {
-		super("Jubile", "", 3);
+	public Voyage() {
+		super("Voyage", "", 3);
 		if (compteurInstance > 1) {
             throw new IllegalStateException("Vous ne pouvez pas créer plus de deux instances.");
         }
@@ -13,9 +13,9 @@ public class Jubile extends CarteVerte {
 	
 	@Override
 	public void appliquerPouvoir() {
-		// Places jusqu'à 2 Cartes de votre main sur vos Oeuvres
+		// Puisez 3 Cartes à la Source. Vous pouvez ensuite jouer une autre carte.
 		
 	}
 	
-	
+
 }

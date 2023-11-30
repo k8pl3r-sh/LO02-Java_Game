@@ -17,15 +17,14 @@ public class MoteurJeu {
 	public static void main(String[] args) {
 		
 		// Essais d'ajouts de carte dans une pile fosse
-		Jubile carte1 = new Jubile("carte1", "fait jsp quoi", 3);
-		Jubile carte2 = new Jubile("carte2", "fait jsp quoi", 3);
-		Jubile carte3 = new Jubile("carte3", "fait jsp quoi", 3);
-		Jubile carte4 = new Jubile("carte4", "fait jsp quoi", 3);
+		Jubile carte1 = new Jubile();
+		Jubile carte2 = new Jubile();
+		Jubile carte3 = new Jubile();
 		Lieu fosse1 = new Lieu();
 		fosse1.addCarte(carte1);
 		fosse1.addCarte(carte2);
 		fosse1.addCarte(carte3);
-		fosse1.addCarte(carte4);
+		//fosse1.addCarte(carte4);
 		fosse1.melanger();
 		System.out.println(fosse1.toString());
 		
