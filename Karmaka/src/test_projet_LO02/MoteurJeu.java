@@ -17,15 +17,17 @@ public class MoteurJeu {
 	public static void main(String[] args) {
 		
 		// Essais d'ajouts de carte dans une pile fosse
+		
 		Incarnation carte1 = new Incarnation();
 		Vol carte2 = new Vol();
 		Vol carte3 = new Vol();
 		Vol carte4 = new Vol();
+
 		Lieu fosse1 = new Lieu();
 		fosse1.addCarte(carte1);
 		fosse1.addCarte(carte2);
 		fosse1.addCarte(carte3);
-		fosse1.addCarte(carte4);
+		//fosse1.addCarte(carte4);
 		fosse1.melanger();
 		System.out.println(fosse1.toString());
 		
