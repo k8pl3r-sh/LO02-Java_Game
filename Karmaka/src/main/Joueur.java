@@ -1,4 +1,4 @@
-package test_projet_LO02;
+package main;
 import java.util.*;
 
 public class Joueur {

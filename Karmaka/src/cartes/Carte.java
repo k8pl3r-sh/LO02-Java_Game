@@ -1,8 +1,8 @@
 package cartes;
 
-import test_projet_LO02.TypeCarte;
+import main.TypeCarte;
 
-public abstract class Carte {
+public class Carte {
 	private String nom;
 	private String pouvoir;
 	private TypeCarte type; //mettre une enum
@@ -60,5 +60,5 @@ public abstract class Carte {
 		this.point = point;
 	}
 	
-	public abstract void appliquerPouvoir();
+	public void appliquerPouvoir();
 }
