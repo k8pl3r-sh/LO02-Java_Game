@@ -100,19 +100,16 @@ public class MoteurJeu {
 		source.deplacerCarte(joueur.getPileJoueur());
 	}
 	
-	public static void jeu() {
-		// Implémentation des tours de jeu tout au long de la partie
-		;
-	}
 	
 	public static void reincarnation() {
 		// Vérification de la condition de réincarnation + réincarnation si besoin
+		// implémentation renaissance
 		;
 	}
 	
-	public static void victoire() {
+	public static boolean victoire() {
 		// Vérifie la condition de victoire
-		;
+		return false;
 	}
 	
 	public static void choixJoueur() {
@@ -130,23 +127,42 @@ public class MoteurJeu {
 		
 		Lieu source = new Lieu();
 		Lieu fosse = new Lieu();
+		// créer pile temporaire pour dons de carte
 		generationSource(source);
 		source.melanger();
 		
+		Joueur[] joueurs = new Joueur[2];
 		
-		Joueur joueur1 = new Joueur();
-		Joueur joueur2 = new Joueur();
+		
+		joueurs[0] = new Joueur();
+		joueurs[1] = new Joueur();
 		
 		// ask Joueur ou bot en face
 		
-		generationPiles(joueur1, source);
-		generationPiles(joueur2, source);
+		generationPiles(joueurs[0], source);
+		generationPiles(joueurs[1], source);
 		
-		System.out.println(joueur1.getMainJoueur().toString());
-		System.out.println(joueur1.getPileJoueur().toString());
-
-		System.out.println(joueur2.getMainJoueur().toString());
-		System.out.println(joueur2.getPileJoueur().toString());
+		// Fin d'initialisation
+		
+		while (!victoire()) {
+		    // Code à exécuter tant que la condition est vraie
+		    // Cette partie du code sera répétée tant que la condition est vraie
+			
+			
+			// boucle for element in joueurs:
+			
+			// Joueur 1 :
+			// reincarnation() 
+			// pioche carte pile -> main (ou s'abstient et passe son tour, si pile vide passer étape suiv)
+			
+			// Joueur une carte de la main : 
+				// points : main -> oeuvre
+				// pouvoir : annoncer effet -> donner à l'adversaire
+				// futur : main -> vie future
+			
+			// Cout Karmique :
+			// affichage carte tas temporaire -> la défausser OU la placer sur la vie future
+		}
 		
 		
 	}
