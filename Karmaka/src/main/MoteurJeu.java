@@ -88,6 +88,8 @@ public class MoteurJeu {
 	
 	public static void generation_piles(Joueur joueur) {
 		// Génération des différentes piles pour un joueur donné au démarrage de la partie 
+		// Vie-Future, Main, Oeuvre, Pile
+		// voir si on utilise les méthodes de Lieu avec les setters
 		;
 	}
 	
@@ -95,12 +97,16 @@ public class MoteurJeu {
 	public static void main(String[] args) {
 		
 		Lieu source = new Lieu();
+		Lieu fosse = new Lieu();
 		generation_source(source);
 		source.melanger();
 		
 		// ask nombre de joueur (1 ou 2) pour création ou nom d'un bot + stratégie
 		Joueur joueur1 = new Joueur();
 		Joueur joueur2 = new Joueur();
+		
+		//tas doivent appartenir aux Joueurs
+		
 		
 		source.distribuerCarteLaPlusHaute(joueur1);
 		System.out.println(joueur1.getMainJoueur().toString());
