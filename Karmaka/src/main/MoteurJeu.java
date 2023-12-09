@@ -14,75 +14,81 @@ public class MoteurJeu {
 			// applique la bonne méthode en fonction du choix
 	public static void generation_source(Lieu paquet) {
 		// Cartes bleues
-		paquet.addCarte(new Carte("Transmigration", "pouvoirTransmigration", TypeCarte.BLEU, 1));
-		paquet.addCarte(new Carte("Transmigration", "pouvoirTransmigration", TypeCarte.BLEU, 1));
-		paquet.addCarte(new Carte("Transmigration", "pouvoirTransmigration", TypeCarte.BLEU, 1));
-		paquet.addCarte(new Carte("CoupdOeil", "pouvoirCoupdOeil", TypeCarte.BLEU, 1));
-		paquet.addCarte(new Carte("CoupdOeil", "pouvoirCoupdOeil", TypeCarte.BLEU, 1));
-		paquet.addCarte(new Carte("CoupdOeil", "pouvoirCoupdOeil", TypeCarte.BLEU, 1));
-		paquet.addCarte(new Carte("RevesBrises", "pouvoirRevesBrises", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("RevesBrises", "pouvoirRevesBrises", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("RevesBrises", "pouvoirRevesBrises", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("Deni", "pouvoirDeni", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("Deni", "pouvoirDeni", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("Deni", "pouvoirDeni", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("Vol", "pouvoirVol", TypeCarte.BLEU, 3));
-		paquet.addCarte(new Carte("Vol", "pouvoirVol", TypeCarte.BLEU, 3));
-		paquet.addCarte(new Carte("Destinee", "pouvoirDestinee", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("Destinee", "pouvoirDestinee", TypeCarte.BLEU, 2));
-		paquet.addCarte(new Carte("Duperie", "pouvoirDuperie", TypeCarte.BLEU, 3));
-		paquet.addCarte(new Carte("Duperie", "pouvoirDuperie", TypeCarte.BLEU, 3));
+		//Pouvoirs test = Pouvoirs.Transmigration;
+		//System.out.println(Pouvoirs.Transmigration instanceof Pouvoirs);
+		//test.appliquerPouvoir();
+		
+		//Carte test2 = new Carte("Transmigration", test, TypeCarte.BLEU, 1);
+		
+		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
+		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
+		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
+		paquet.addCarte(new Carte("CoupdOeil", Pouvoirs.CoupdOeil, TypeCarte.BLEU, 1));
+		paquet.addCarte(new Carte("CoupdOeil", Pouvoirs.CoupdOeil, TypeCarte.BLEU, 1));
+		paquet.addCarte(new Carte("CoupdOeil", Pouvoirs.CoupdOeil, TypeCarte.BLEU, 1));
+		paquet.addCarte(new Carte("RevesBrises", Pouvoirs.RevesBrises, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("RevesBrises", Pouvoirs.RevesBrises, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("RevesBrises", Pouvoirs.RevesBrises, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("Deni", Pouvoirs.Deni, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("Deni", Pouvoirs.Deni, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("Deni", Pouvoirs.Deni, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("Vol", Pouvoirs.Vol, TypeCarte.BLEU, 3));
+		paquet.addCarte(new Carte("Vol", Pouvoirs.Vol, TypeCarte.BLEU, 3));
+		paquet.addCarte(new Carte("Destinee", Pouvoirs.Destinee, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("Destinee", Pouvoirs.Destinee, TypeCarte.BLEU, 2));
+		paquet.addCarte(new Carte("Duperie", Pouvoirs.Duperie, TypeCarte.BLEU, 3));
+		paquet.addCarte(new Carte("Duperie", Pouvoirs.Duperie, TypeCarte.BLEU, 3));
 		
 		// Vertes
-		paquet.addCarte(new Carte("Lendemain", "pouvoirLendemain", TypeCarte.VERT, 1));
-		paquet.addCarte(new Carte("Lendemain", "pouvoirLendemain", TypeCarte.VERT, 1));
-		paquet.addCarte(new Carte("Lendemain", "pouvoirLendemain", TypeCarte.VERT, 1));
-		paquet.addCarte(new Carte("Sauvetage", "pouvoirSauvetage", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Sauvetage", "pouvoirSauvetage", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Sauvetage", "pouvoirSauvetage", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Longevite", "pouvoirLongevite", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Longevite", "pouvoirLongevite", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Longevite", "pouvoirLongevite", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Recyclage", "pouvoirRecyclage", TypeCarte.VERT, 1));
-		paquet.addCarte(new Carte("Recyclage", "pouvoirRecyclage", TypeCarte.VERT, 1));
-		paquet.addCarte(new Carte("Recyclage", "pouvoirRecyclage", TypeCarte.VERT, 1));
-		paquet.addCarte(new Carte("Semis", "pouvoirSemis", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Semis", "pouvoirSemis", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Semis", "pouvoirSemis", TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Voyage", "pouvoirVoyage", TypeCarte.VERT, 3));
-		paquet.addCarte(new Carte("Voyage", "pouvoirVoyage", TypeCarte.VERT, 3));
-		paquet.addCarte(new Carte("Jubile", "pouvoirJubile", TypeCarte.VERT, 3));
-		paquet.addCarte(new Carte("Jubile", "pouvoirJubile", TypeCarte.VERT, 3));
+		paquet.addCarte(new Carte("Lendemain", Pouvoirs.Lendemain, TypeCarte.VERT, 1));
+		paquet.addCarte(new Carte("Lendemain", Pouvoirs.Lendemain, TypeCarte.VERT, 1));
+		paquet.addCarte(new Carte("Lendemain", Pouvoirs.Lendemain, TypeCarte.VERT, 1));
+		paquet.addCarte(new Carte("Sauvetage", Pouvoirs.Sauvetage, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Sauvetage", Pouvoirs.Sauvetage, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Sauvetage", Pouvoirs.Sauvetage, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Longevite", Pouvoirs.Longevite, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Longevite", Pouvoirs.Longevite, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Longevite", Pouvoirs.Longevite, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Recyclage", Pouvoirs.Recyclage, TypeCarte.VERT, 1));
+		paquet.addCarte(new Carte("Recyclage", Pouvoirs.Recyclage, TypeCarte.VERT, 1));
+		paquet.addCarte(new Carte("Recyclage", Pouvoirs.Recyclage, TypeCarte.VERT, 1));
+		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
+		paquet.addCarte(new Carte("Voyage", Pouvoirs.Voyage, TypeCarte.VERT, 3));
+		paquet.addCarte(new Carte("Voyage", Pouvoirs.Voyage, TypeCarte.VERT, 3));
+		paquet.addCarte(new Carte("Jubile", Pouvoirs.Jubile, TypeCarte.VERT, 3));
+		paquet.addCarte(new Carte("Jubile", Pouvoirs.Jubile, TypeCarte.VERT, 3));
 		
 		// Rouges
-		paquet.addCarte(new Carte("DernierSouffle", "pouvoirDernierSouffle", TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("DernierSouffle", "pouvoirDernierSouffle", TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("DernierSouffle", "pouvoirDernierSouffle", TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("Crise", "pouvoirDernierCrise", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Crise", "pouvoirDernierCrise", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Crise", "pouvoirDernierCrise", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Fournaise", "pouvoirFournaise", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Fournaise", "pouvoirFournaise", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Fournaise", "pouvoirFournaise", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Vengeance", "pouvoirVengeance", TypeCarte.ROUGE, 3));
-		paquet.addCarte(new Carte("Vengeance", "pouvoirVengeance", TypeCarte.ROUGE, 3));
-		paquet.addCarte(new Carte("Panique", "pouvoirPanique", TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("Panique", "pouvoirPanique", TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("Panique", "pouvoirPanique", TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("Roulette", "pouvoirRoulette", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Roulette", "pouvoirRoulette", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Roulette", "pouvoirRoulette", TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Bassesse", "pouvoirBassesse", TypeCarte.ROUGE, 3));
-		paquet.addCarte(new Carte("Bassesse", "pouvoirBassesse", TypeCarte.ROUGE, 3));
+		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
+		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
+		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
+		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Vengeance", Pouvoirs.Vengeance, TypeCarte.ROUGE, 3));
+		paquet.addCarte(new Carte("Vengeance", Pouvoirs.Vengeance, TypeCarte.ROUGE, 3));
+		paquet.addCarte(new Carte("Panique", Pouvoirs.Panique, TypeCarte.ROUGE, 1));
+		paquet.addCarte(new Carte("Panique", Pouvoirs.Panique, TypeCarte.ROUGE, 1));
+		paquet.addCarte(new Carte("Panique", Pouvoirs.Panique, TypeCarte.ROUGE, 1));
+		paquet.addCarte(new Carte("Roulette", Pouvoirs.Roulette, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Roulette", Pouvoirs.Roulette, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Roulette", Pouvoirs.Roulette, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Bassesse", Pouvoirs.Roulette, TypeCarte.ROUGE, 3));
+		paquet.addCarte(new Carte("Bassesse", Pouvoirs.Roulette, TypeCarte.ROUGE, 3));
 		
 		// Mosaïque
-		paquet.addCarte(new Carte("Incarnation", "pouvoirIncarnation", TypeCarte.MOSAIQUE, 1));
-		paquet.addCarte(new Carte("Incarnation", "pouvoirIncarnation", TypeCarte.MOSAIQUE, 1));
-		paquet.addCarte(new Carte("Incarnation", "pouvoirIncarnation", TypeCarte.MOSAIQUE, 1));
-		paquet.addCarte(new Carte("Incarnation", "pouvoirIncarnation", TypeCarte.MOSAIQUE, 1));
-		paquet.addCarte(new Carte("Incarnation", "pouvoirIncarnation", TypeCarte.MOSAIQUE, 1));
-		paquet.addCarte(new Carte("Mimetisme", "pouvoirMimetisme", TypeCarte.MOSAIQUE, 1));
-		paquet.addCarte(new Carte("Mimetisme", "pouvoirMimetisme", TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Incarnation", Pouvoirs.Incarnation, TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Incarnation", Pouvoirs.Incarnation, TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Incarnation", Pouvoirs.Incarnation, TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Incarnation", Pouvoirs.Incarnation, TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Incarnation", Pouvoirs.Incarnation, TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Mimetisme", Pouvoirs.Mimetisme, TypeCarte.MOSAIQUE, 1));
+		paquet.addCarte(new Carte("Mimetisme", Pouvoirs.Mimetisme, TypeCarte.MOSAIQUE, 1));
 	}
 	
 	
@@ -95,6 +101,8 @@ public class MoteurJeu {
 	
 
 	public static void main(String[] args) {
+
+
 		
 		Lieu source = new Lieu();
 		Lieu fosse = new Lieu();

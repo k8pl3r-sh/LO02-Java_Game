@@ -1,14 +1,16 @@
 package cartes;
 
 import main.TypeCarte;
+import main.Pouvoirs;
 
 public class Carte {
 	private String nom;
-	private String pouvoir;
+	// private String pouvoir;
 	private TypeCarte type; //mettre une enum
+	private Pouvoirs pouvoir;
 	private int point;
 	
-	public Carte(String nom, String pouvoir, TypeCarte type, int point) {
+	public Carte(String nom, Pouvoirs pouvoir, TypeCarte type, int point) {
 		this.nom = nom;
 		this.pouvoir = pouvoir;
 		this.type = type;
@@ -29,23 +31,23 @@ public class Carte {
 	}
 
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	public String getPouvoir() {
-		return pouvoir;
+	public Pouvoirs getPouvoir() {
+		return this.pouvoir;
 	}
 
-	public void setPouvoir(String pouvoir) {
+	public void setPouvoir(Pouvoirs pouvoir) {
 		this.pouvoir = pouvoir;
 	}
 
 	public TypeCarte getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(TypeCarte type) {
@@ -53,12 +55,15 @@ public class Carte {
 	}
 
 	public int getPoint() {
-		return point;
+		return this.point;
 	}
 
 	public void setPoint(int point) {
 		this.point = point;
 	}
 	
-	public void appliquerPouvoir();
+	public void appliquerPouvoir() {
+		this.pouvoir.appliquerPouvoir();
+	}
+	
 }
