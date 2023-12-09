@@ -4,7 +4,6 @@ import cartes.*;
 import main.TypeCarte;
 
 public class MoteurJeu {
-	
 
 	// methode miseEnPlacePartie
 	// while (checkVictoire != True)
@@ -12,14 +11,10 @@ public class MoteurJeu {
 			// methode reincarnation 
 			// methode choixJoueur
 			// applique la bonne méthode en fonction du choix
-	public static void generation_source(Lieu paquet) {
+	
+	
+	public static void generationSource(Lieu paquet) {
 		// Cartes bleues
-		//Pouvoirs test = Pouvoirs.Transmigration;
-		//System.out.println(Pouvoirs.Transmigration instanceof Pouvoirs);
-		//test.appliquerPouvoir();
-		
-		//Carte test2 = new Carte("Transmigration", test, TypeCarte.BLEU, 1);
-		
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
@@ -92,12 +87,41 @@ public class MoteurJeu {
 	}
 	
 	
-	public static void generation_piles(Joueur joueur) {
+	public static void generationPiles(Joueur joueur, Lieu source) {
 		// Génération des différentes piles pour un joueur donné au démarrage de la partie 
-		// Vie-Future, Main, Oeuvre, Pile
-		// voir si on utilise les méthodes de Lieu avec les setters
+		
+		// 4 cartes à mettre dans la main 
+		for (int i = 0; i < 4; i++) {
+			source.distribuerCarteLaPlusHaute(joueur);
+		}
+		
+		// 2 cartes à mettre sur la pile
+		source.deplacerCarte(joueur.getPileJoueur());
+		source.deplacerCarte(joueur.getPileJoueur());
+	}
+	
+	public static void jeu() {
+		// Implémentation des tours de jeu tout au long de la partie
 		;
 	}
+	
+	public static void reincarnation() {
+		// Vérification de la condition de réincarnation + réincarnation si besoin
+		;
+	}
+	
+	public static void victoire() {
+		// Vérifie la condition de victoire
+		;
+	}
+	
+	public static void choixJoueur() {
+		// Vérifie la condition de victoire
+		;
+	}
+	
+
+	
 	
 
 	public static void main(String[] args) {
@@ -106,48 +130,24 @@ public class MoteurJeu {
 		
 		Lieu source = new Lieu();
 		Lieu fosse = new Lieu();
-		generation_source(source);
+		generationSource(source);
 		source.melanger();
 		
-		// ask nombre de joueur (1 ou 2) pour création ou nom d'un bot + stratégie
+		
 		Joueur joueur1 = new Joueur();
 		Joueur joueur2 = new Joueur();
 		
-		//tas doivent appartenir aux Joueurs
+		// ask Joueur ou bot en face
 		
+		generationPiles(joueur1, source);
+		generationPiles(joueur2, source);
 		
-		source.distribuerCarteLaPlusHaute(joueur1);
 		System.out.println(joueur1.getMainJoueur().toString());
-		System.out.println(source.toString());
-		
-		
-		
-		
-		/*
-		Incarnation carte1 = new Incarnation();
-		Vol carte2 = new Vol();
-		Vol carte3 = new Vol();
-		//Vol carte4 = new Vol();
+		System.out.println(joueur1.getPileJoueur().toString());
 
-		Lieu fosse1 = new Lieu();
-		fosse1.addCarte(carte1);
-		fosse1.addCarte(carte2);
-		fosse1.addCarte(carte3);
-		fosse1.addCarte(new Carte("Jubile", "pouvoirJubile", TypeCarte.BLEU, 3));
-		//fosse1.addCarte(carte4);
-		fosse1.melanger();
-		System.out.println(fosse1.toString());
+		System.out.println(joueur2.getMainJoueur().toString());
+		System.out.println(joueur2.getPileJoueur().toString());
 		
-		// Essais de pioche dans une pile source
-		Joueur joueur1 = new Joueur();
-		fosse1.distribuerCarteLaPlusHaute(joueur1);
-		System.out.println(joueur1.getMainJoueur().toString());
-		System.out.println(fosse1.toString());
-		*/
-		
-		// Schema du programme
-		// 1. Instanciation des joueurs, des cartes, Fosse et source
-		// 2. While (check victoire)
 		
 	}
 }

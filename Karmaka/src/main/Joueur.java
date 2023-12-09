@@ -2,16 +2,16 @@ package main;
 import java.util.*;
 
 public class Joueur {
-	private Lieu mainJoueur;
-	private Lieu pileJoueur;
-	private Lieu oeuvresJoueur;
-	private Lieu vieFutureJoueur;
+	public Lieu mainJoueur;
+	public Lieu pileJoueur;
+	public Lieu oeuvresJoueur;
+	public Lieu vieFutureJoueur;
 	
 	public Joueur() {
-		mainJoueur = new Lieu();
-		pileJoueur = new Lieu();
-		oeuvresJoueur = new Lieu();
-		vieFutureJoueur = new Lieu();
+		this.mainJoueur = new Lieu();
+		this.pileJoueur = new Lieu();
+		this.oeuvresJoueur = new Lieu();
+		this.vieFutureJoueur = new Lieu();
 	}
 	
 	public Lieu getMainJoueur() {
@@ -38,7 +38,10 @@ public class Joueur {
 	public void setVieFutureJoueur(Lieu vieFutureJoueur) {
 		this.vieFutureJoueur = vieFutureJoueur;
 	}
-	
+	/*
+	public void ajouterCarteMain(Carte carte) {
+        mainJoueur.addCarte(carte);
+	}*/
 	
 	
 }

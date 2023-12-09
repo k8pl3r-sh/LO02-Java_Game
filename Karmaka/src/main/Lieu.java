@@ -54,7 +54,7 @@ public class Lieu {
 	        joueur.getMainJoueur().addCarte(carteLaPlusHaute); // Ajoute la carte à la main du joueur
 	    }
 	}
-	
+	/*
 	public void deplacerCarte(Lieu lieuCible, Joueur joueur) {
 		if (!estVide()) {
 	        // Obtient la dernière carte du lieu actuel
@@ -63,6 +63,18 @@ public class Lieu {
 	        // Retire la carte du lieu actuel et l'ajoute à la main du joueur
 	        tasCartes.removeLast(); // Retire la dernière carte du tas
 	        joueur.getOeuvresJoueur().addCarte(carteLaPlusHaute); // Ajoute la carte de la main aux Oeuvres du joueur
+	    }
+		
+	}*/
+	// on précise le joueur avec joueur.getPileJoueur()
+	public void deplacerCarte(Lieu lieuCible) {
+		if (!estVide()) {
+	        // Obtient la dernière carte du lieu actuel
+	        Carte carteLaPlusHaute = tasCartes.peekLast(); // Utilisation de peekLast() pour obtenir la dernière carte sans la retirer
+
+	        // Retire la carte du lieu actuel et l'ajoute à la main du joueur
+	        tasCartes.removeLast(); // Retire la dernière carte du tas
+	        lieuCible.addCarte(carteLaPlusHaute); // Ajoute la carte de la main aux Oeuvres du joueur
 	    }
 		
 	}
