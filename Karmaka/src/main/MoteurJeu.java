@@ -186,8 +186,11 @@ public class MoteurJeu {
 	            // System.out.println("Nom : " + joueur.getNom());
 				System.out.println("Joueur suivant :");
 				
+				// check à faire si cout karmique non vide -> et vider
+				
 				if(!(joueur.getPileJoueur().estVide())) {
 					// Pile non vide
+					System.out.println(joueur.getPileJoueur());
 					
 					// Check passer son tour
 					System.out.println("Options : ");
@@ -202,10 +205,11 @@ public class MoteurJeu {
 			        	// terminer la boucle du tour
 			        	break;
 			        }
+			        else if(choix2 == 1) {
+			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
+			        }
 				}
 			    
-				// Si pile joueur vide ou choix de piocher
-				source.distribuerCarteLaPlusHaute(joueur);
 			    System.out.println(joueur.getMainJoueur());
 			        	
 	        	System.out.println("Options : ");
@@ -220,34 +224,22 @@ public class MoteurJeu {
 		        
 				System.out.println("Quel est le nom de la carte à jouer ?");
 		        String name = scanner.nextLine();
-		       
-		        // Gestion des erreurs à faire : à faire dans lieu pour déplacer carte
-		        
-				Carte carteTrouvee = null;
-				for (Carte carte : joueur.getMainJoueur().getTasCartes()) {
-				    if (carte.getNom().equalsIgnoreCase(name)) {
-				        carteTrouvee = carte;
-				        break; // Sortir de la boucle une fois que la carte est trouvée
-				    }
-				}
-				
-				if (carteTrouvee == null) { // existence carte
-					System.out.println("Carte non trouvée.");
-				}
+
 		        
 		        switch (choix3) {
-		            case 1: // Pouvoir
-		                carteTrouvee.appliquerPouvoir(); // à changer pour faire les vérifications dans lieu
-		                // puis donner la carte à la pile temporaire
-		                //joueur.getMainJoueur().getTasCartes().deplacerCarteParNom(name, coutKarmique);
-		                
-		                break;
-		            case 2: // Points
-		                System.out.println("Jouer une carte pour ses points");
+		            case 1: // Pouvoir OK
+		            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir();
+		                joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
 		                break;
 		                
-		            case 3: // Futur
-		                System.out.println("Jouer une carte pour son futur");
+		            case 2: // Points OK
+		                joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
+		                System.out.println(joueur.getOeuvresJoueur()); // visible de tous
+		                System.out.println(joueur.getMainJoueur());
+		                break;
+		                
+		            case 3: // Futur OK
+		                joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
 		                break;
 		                
 		            default:
@@ -258,8 +250,8 @@ public class MoteurJeu {
 				     
 			        
 					
-				}
-	        }
+			} // loop des joueurs
+	    } // loop de jeu
 		scanner.close();
 		}
 }

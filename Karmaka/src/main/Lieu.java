@@ -1,6 +1,9 @@
 package main;
 import java.util.*;
 
+// Faire en sorte que lorsque on affiche un lieu on voit si
+// c'est une VieFuture, une Oeuvre/....
+
 import cartes.Carte;
 
 public class Lieu {
@@ -79,18 +82,38 @@ public class Lieu {
 		
 	}
 	
-	public boolean removeCarte(Carte carte) { // à tester
-	    Iterator<Carte> iterator = tasCartes.iterator();
-	    while (iterator.hasNext()) {
-	        Carte carteDansLeLieu = iterator.next();
-	        if (carteDansLeLieu.equals(carte)) {
-	            iterator.remove(); // Retire la carte du lieu
-	            return true; // Carte retirée avec succès
-	        }
-	    }
-	    return false; // La carte n'a pas été trouvée dans ce lieu
-	}
+	public boolean removeCarte(Carte carte) {
+        // A implémenter !!!
+		;
+    }
 	
 	// Méthode deplacerCarteParNom(String NomCarte, Lieu destination) à faire
+	public void deplacerCarteParNom(String nomCarte, Lieu destination) {
+	    Carte carteADeplacer = null;
 
+	    for (Carte carte : tasCartes) {
+	        if (carte.getNom().equalsIgnoreCase(nomCarte)) {
+	            carteADeplacer = carte;
+	            break;
+	        }
+	    }
+
+	    if (carteADeplacer != null) {
+	        tasCartes.removeCarte(carteADeplacer); // Retire la carte du lieu actuel
+	        destination.addCarte(carteADeplacer); // Ajoute la carte à la destination
+	    } else {
+	        throw new IllegalStateException("Carte non trouvée : " + nomCarte);
+	    }
+	}
+	
+	public Carte getCarteParNom(String nomCarte) {
+        for (Carte carte : tasCartes) {
+            if (carte.getNom().equalsIgnoreCase(nomCarte)) {
+                return carte; // Renvoie la carte si le nom correspond
+            }
+        }
+        return null; // Renvoie null si aucune carte avec ce nom n'est trouvée
+    }
+
+	
 }
