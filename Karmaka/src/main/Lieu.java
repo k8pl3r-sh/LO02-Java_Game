@@ -82,9 +82,8 @@ public class Lieu {
 		
 	}
 	
-	public boolean removeCarte(Carte carte) {
-        // A implémenter !!!
-		;
+	public void removeCarte(Carte carte) {
+		tasCartes.remove(carte);
     }
 	
 	// Méthode deplacerCarteParNom(String NomCarte, Lieu destination) à faire
@@ -99,7 +98,7 @@ public class Lieu {
 	    }
 
 	    if (carteADeplacer != null) {
-	        tasCartes.removeCarte(carteADeplacer); // Retire la carte du lieu actuel
+	        this.removeCarte(carteADeplacer); // Retire la carte du lieu actuel
 	        destination.addCarte(carteADeplacer); // Ajoute la carte à la destination
 	    } else {
 	        throw new IllegalStateException("Carte non trouvée : " + nomCarte);
