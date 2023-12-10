@@ -193,9 +193,12 @@ public class MoteurJeu {
 		;
 	}
 	
-	public static void checkCoutKarmique(Joueur joueur) {
+	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique) {
 		// if coutKarmique not empty
 		// Proposer choix au joueur de vie futur ou fosse
+		if(!coutKarmique.estVide()) {
+			// proposer au joueur de prendre la carte dans sa vie future
+		}
 		;
 	}
 
@@ -255,8 +258,7 @@ public class MoteurJeu {
 				System.out.println("Joueur suivant :");
 				
 				reincarnation(joueur);
-				// check à faire si cout karmique non vide -> et vider
-				checkCoutKarmique(joueur);
+				checkCoutKarmique(joueur, coutKarmique);
 				
 				if(!(joueur.getPileJoueur().estVide())) {
 					// Pile non vide
