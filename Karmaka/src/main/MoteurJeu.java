@@ -103,19 +103,99 @@ public class MoteurJeu {
 	}
 	
 	
-	public static void reincarnation() {
+	public static void reincarnation(Joueur joueur) {
 		// Vérification de la condition de réincarnation + réincarnation si besoin
 		// implémentation renaissance
+		
+		// Si plus carte Pile et plus carte Main -> compte points
+		
+		// Couleur de + de points en ajoutant les mosaïques
+		// gérer coût par niveau
+		// -> 
+		if(joueur.getMainJoueur().estVide() && joueur.getPileJoueur().estVide()) {
+			System.out.println("Réincarnation ?");
+			// à implémenter
+			// OK passage tour après
+			// check si retourne qqch
+			
+			switch (joueur.getniveauKarmique()) { // à refactor pour gestion anneaux karmiques
+		    case 0:
+		        // Bousier : 4 pour évoluer
+		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 4) {
+		    		joueur.setniveauKarmique();
+		    	}
+		    	else {
+		    		// faire le cas pour utiliser les anneaux karmiques
+		    		joueur.setanneauxKarmique();
+		    		// implémenter renaissance(joueur)
+		    	}
+		        break;
+		    case 1:
+		        // Serpent : 5 pour évoluer
+		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 5) {
+		    		joueur.setniveauKarmique();
+		    	}
+		    	else {
+		    		// faire le cas pour utiliser les anneaux karmiques
+		    		joueur.setanneauxKarmique();
+		    		// implémenter renaissance(joueur)
+		    	}
+		        break;
+		    case 2:
+		    	// Loup : 6 pour évoluer
+		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 6) {
+		    		joueur.setniveauKarmique();
+		    	}
+		    	else {
+		    		// faire le cas pour utiliser les anneaux karmiques
+		    		joueur.setanneauxKarmique();
+		    		// implémenter renaissance(joueur)
+		    	}
+		        break;
+		    case 3:
+		    	// Singe : 7 pour évoluer
+		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 7) {
+		    		joueur.setniveauKarmique();
+		    	}
+		    	else {
+		    		// faire le cas pour utiliser les anneaux karmiques
+		    		joueur.setanneauxKarmique();
+		    		// implémenter renaissance(joueur)
+		    	}
+		        break;
+		    default:
+		        System.out.println("Erreur");
+		        break;
+		}
+
+		}
+	}
+	public static void renaissance(Joueur joueur) {
+		// si renaissance -> fin de tour
+		// défausser oeuvres fosse
+		// cartes vie futur -> main
+		// si moins de 6 cartes Pile + Main : prendre source -> pile sans les voir pour 6 Pile + Main
 		;
 	}
 	
-	public static boolean victoire() {
-		// Vérifie la condition de victoire
+	public static boolean victoire(Joueur[] joueurs) {
+		// Appelée au début de chaque loop de jeu
+		for (Joueur joueur : joueurs) {
+			if(joueur.getniveauKarmique() ==4) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
 	public static void choixJoueur() {
 		// Choix à chaque tour
+		;
+	}
+	
+	public static void checkCoutKarmique(Joueur joueur) {
+		// if coutKarmique not empty
+		// Proposer choix au joueur de vie futur ou fosse
 		;
 	}
 
@@ -155,6 +235,8 @@ public class MoteurJeu {
         	// gestion d'erreur à faire sur un while
         }
         
+
+        
 		
 		
 		generationPiles(joueurs[0], source);
@@ -162,37 +244,24 @@ public class MoteurJeu {
 		
 		// Fin d'initialisation
 		
-		while (!victoire()) {
+		while (!victoire(joueurs)) { // condition de break !victoire() mais en void actuellement
+			
+			
 		    // Code à exécuter tant que la condition de victoire est fausse
-		    // Cette partie du code sera répétée tant que la condition est vraie
-			
-			
-			// boucle for element in joueurs:
-			
-			// Joueur 1 :
-			// reincarnation() 
-			// pioche carte pile -> main (ou s'abstient et passe son tour, si pile vide passer étape suiv)
-			
-			// Joueur une carte de la main : 
-				// points : main -> oeuvre
-				// pouvoir : annoncer effet -> donner à l'adversaire
-				// futur : main -> vie future
-			
-			// Cout Karmique :
-			// affichage carte tas temporaire -> la défausser OU la placer sur la vie future
 			
 			
 			for (Joueur joueur : joueurs) {
 	            // System.out.println("Nom : " + joueur.getNom());
 				System.out.println("Joueur suivant :");
 				
+				reincarnation(joueur);
 				// check à faire si cout karmique non vide -> et vider
+				checkCoutKarmique(joueur);
 				
 				if(!(joueur.getPileJoueur().estVide())) {
 					// Pile non vide
-					System.out.println(joueur.getPileJoueur());
+					// System.out.println(joueur.getPileJoueur());
 					
-					// Check passer son tour
 					System.out.println("Options : ");
 					System.out.println("1 - Piocher une carte");
 					System.out.println("2 - Passer son tour");
@@ -202,10 +271,9 @@ public class MoteurJeu {
 			        // check sur choix pour piocher / passer son tour
 			        
 			        if(choix2 == 2) {
-			        	// terminer la boucle du tour
 			        	break;
 			        }
-			        else if(choix2 == 1) {
+			        else if(choix2 == 1) { // Piocher carte
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
 			        }
 				}

@@ -1,11 +1,13 @@
 package main;
-import java.util.*;
+// import java.util.*;
 
 public class Joueur {
-	public Lieu mainJoueur;
-	public Lieu pileJoueur;
-	public Lieu oeuvresJoueur;
-	public Lieu vieFutureJoueur;
+	private Lieu mainJoueur;
+	private Lieu pileJoueur;
+	private Lieu oeuvresJoueur;
+	private Lieu vieFutureJoueur;
+	private int niveauKarmique;
+	private int anneauxKarmique;
 	
 	public Joueur() {
 		// implémenter un nom de joueur ?
@@ -13,6 +15,8 @@ public class Joueur {
 		this.pileJoueur = new Lieu();
 		this.oeuvresJoueur = new Lieu();
 		this.vieFutureJoueur = new Lieu();
+		this.niveauKarmique = 0;
+		this.anneauxKarmique = 0;
 	}
 	
 	public Lieu getMainJoueur() {
@@ -39,10 +43,19 @@ public class Joueur {
 	public void setVieFutureJoueur(Lieu vieFutureJoueur) {
 		this.vieFutureJoueur = vieFutureJoueur;
 	}
-	/*
-	public void ajouterCarteMain(Carte carte) {
-        mainJoueur.addCarte(carte);
-	}*/
+	public int getniveauKarmique() {
+		return niveauKarmique;
+	}
+	public void setniveauKarmique() {
+		this.niveauKarmique += niveauKarmique;
+	}
+	public int getanneauxKarmique() {
+		return niveauKarmique;
+	}
+	public void setanneauxKarmique() {
+		this.anneauxKarmique += anneauxKarmique;
+	}
+	
 	
 	
 }

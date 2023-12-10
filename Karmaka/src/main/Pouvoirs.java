@@ -64,6 +64,9 @@ public enum Pouvoirs {
     Voyage {
     	public void appliquerPouvoir() {
             System.out.println("Appliquer pouvoir Voyage");
+            //source.distribuerCarteLaPlusHaute(joueur);
+            //source.distribuerCarteLaPlusHaute(joueur);
+            //source.distribuerCarteLaPlusHaute(joueur);
         }
     },
     Jubile {

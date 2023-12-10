@@ -113,6 +113,34 @@ public class Lieu {
         }
         return null; // Renvoie null si aucune carte avec ce nom n'est trouvée
     }
+	
+	public int sommeMaxParTypeCarte() {
+        Map<TypeCarte, Integer> sommeParType = new HashMap<>();
+        int sommeMosaique = 0;
+
+        // Calcul de la somme des points par type de carte (à l'exception de MOSAIQUE)
+        for (Carte carte : tasCartes) {
+            TypeCarte type = carte.getType();
+            int points = carte.getPoint();
+
+            if (type != TypeCarte.MOSAIQUE) {
+                sommeParType.put(type, Math.max(sommeParType.getOrDefault(type, 0), points));
+            } else {
+                sommeMosaique += points;
+            }
+        }
+
+        // Ajout des points MOSAIQUE à chaque type de carte
+        for (TypeCarte type : sommeParType.keySet()) {
+            sommeParType.put(type, sommeParType.get(type) + sommeMosaique);
+        }
+
+        // Trouver la somme maximale par type de carte
+        int sommeMax = sommeParType.values().stream().max(Integer::compareTo).orElse(0);
+        return sommeMax;
+    }
+	
+	// méthodes supplémentaire pour appliquer les pouvoirs ?
 
 	
 }
