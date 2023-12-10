@@ -135,6 +135,7 @@ public enum Pouvoirs {
     Incarnation {
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
             System.out.println("Appliquer pouvoir Incarnation");
+            
         }
     },
     Mimetisme { // à vérifier
@@ -150,6 +151,5 @@ public enum Pouvoirs {
         }
     };
 
-    // Méthode abstraite
     public abstract void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse);
 }

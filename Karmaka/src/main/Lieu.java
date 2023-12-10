@@ -1,9 +1,6 @@
 package main;
 import java.util.*;
 
-// Faire en sorte que lorsque on affiche un lieu on voit si
-// c'est une VieFuture, une Oeuvre/....
-
 import cartes.Carte;
 
 public class Lieu {
@@ -14,15 +11,14 @@ public class Lieu {
 		tasCartes = new LinkedList<Carte>(); 
 	}
 	
-	// retire la premiére carte du tas de cartes (la carte du dessus)
+	// retire la première carte du tas de cartes (la carte du dessus)
 	public Carte distribuerUneCarte(){ 
 		Carte c;
-		// on retire la carte du dessus du tas de cartes
 		c = tasCartes.poll(); 
 		return c;	
 	}
 		
-	// Mélange de toutes les cartes. Très simple ....Appel de shuffle de la classe Collections (à différencier de l'interface Collection)
+	// Mélange de toutes les cartes
 	public void melanger(){
 		Collections.shuffle(tasCartes);
 	}
@@ -57,21 +53,8 @@ public class Lieu {
 	        joueur.getMainJoueur().addCarte(carteLaPlusHaute); // Ajoute la carte à la main du joueur
 	    }
 	}
-	/*
-	public void deplacerCarte(Lieu lieuCible, Joueur joueur) {
-		if (!estVide()) {
-	        // Obtient la dernière carte du lieu actuel
-	        Carte carteLaPlusHaute = tasCartes.peekLast(); // Utilisation de peekLast() pour obtenir la dernière carte sans la retirer
-
-	        // Retire la carte du lieu actuel et l'ajoute à la main du joueur
-	        tasCartes.removeLast(); // Retire la dernière carte du tas
-	        joueur.getOeuvresJoueur().addCarte(carteLaPlusHaute); // Ajoute la carte de la main aux Oeuvres du joueur
-	    }
-		
-	}*/
 	
 	public Carte retourneCarteLaPlusHaute() {
-	    // Vérifie si le lieu actuel n'est pas vide
 	    if (!estVide()) {
 	        // Obtient la dernière carte du lieu actuel
 	        Carte carteLaPlusHaute = tasCartes.peekLast(); // Utilisation de peekLast() pour obtenir la dernière carte sans la retirer
@@ -82,7 +65,7 @@ public class Lieu {
 	
 	
 	// on précise le joueur avec joueur.getPileJoueur()
-	public void deplacerCarte(Lieu lieuCible) {
+	public void deplacerCarte(Lieu lieuCible) { // méthode mieux que peek pour prendre et retirer ?
 		if (!estVide()) {
 	        // Obtient la dernière carte du lieu actuel
 	        Carte carteLaPlusHaute = tasCartes.peekLast(); // Utilisation de peekLast() pour obtenir la dernière carte sans la retirer
@@ -98,7 +81,6 @@ public class Lieu {
 		tasCartes.remove(carte);
     }
 	
-	// Méthode deplacerCarteParNom(String NomCarte, Lieu destination) à faire
 	public void deplacerCarteParNom(String nomCarte, Lieu destination) {
 	    Carte carteADeplacer = null;
 
@@ -151,8 +133,4 @@ public class Lieu {
         int sommeMax = sommeParType.values().stream().max(Integer::compareTo).orElse(0);
         return sommeMax;
     }
-	
-	// méthodes supplémentaire pour appliquer les pouvoirs ?
-
-	
 }

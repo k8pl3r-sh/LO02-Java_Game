@@ -7,14 +7,6 @@ import main.TypeCarte;
 
 public class MoteurJeu {
 
-	// methode miseEnPlacePartie
-	// while (checkVictoire != True)
-		// methode tourDeJeu
-			// methode reincarnation 
-			// methode choixJoueur
-			// applique la bonne méthode en fonction du choix
-	
-	
 	public static void generationSource(Lieu paquet) {
 		
 		// Cartes bleues
@@ -103,75 +95,48 @@ public class MoteurJeu {
 		source.deplacerCarte(joueur.getPileJoueur());
 	}
 	
-	
-	public static void reincarnation(Joueur joueur) {
-		// Vérification de la condition de réincarnation + réincarnation si besoin
-		// implémentation renaissance
-		
-		// Si plus carte Pile et plus carte Main -> compte points
-		
-		// Couleur de + de points en ajoutant les mosaïques
-		// gérer coût par niveau
-		// -> 
-		if(joueur.getMainJoueur().estVide() && joueur.getPileJoueur().estVide()) {
-			System.out.println("Réincarnation ?");
-			// à implémenter
-			// OK passage tour après
-			// check si retourne qqch
-			
-			switch (joueur.getniveauKarmique()) { // à refactor pour gestion anneaux karmiques
-		    case 0:
-		        // Bousier : 4 pour évoluer
-		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 4) {
-		    		joueur.setniveauKarmique();
-		    	}
-		    	else {
-		    		// faire le cas pour utiliser les anneaux karmiques
-		    		joueur.setanneauxKarmique();
-		    		// implémenter renaissance(joueur)
-		    	}
-		        break;
-		    case 1:
-		        // Serpent : 5 pour évoluer
-		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 5) {
-		    		joueur.setniveauKarmique();
-		    	}
-		    	else {
-		    		// faire le cas pour utiliser les anneaux karmiques
-		    		joueur.setanneauxKarmique();
-		    		// implémenter renaissance(joueur)
-		    	}
-		        break;
-		    case 2:
-		    	// Loup : 6 pour évoluer
-		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 6) {
-		    		joueur.setniveauKarmique();
-		    	}
-		    	else {
-		    		// faire le cas pour utiliser les anneaux karmiques
-		    		joueur.setanneauxKarmique();
-		    		// implémenter renaissance(joueur)
-		    	}
-		        break;
-		    case 3:
-		    	// Singe : 7 pour évoluer
-		    	if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= 7) {
-		    		joueur.setniveauKarmique();
-		    	}
-		    	else {
-		    		// faire le cas pour utiliser les anneaux karmiques
-		    		joueur.setanneauxKarmique();
-		    		// implémenter renaissance(joueur)
-		    	}
-		        break;
-		    default:
-		        System.out.println("Erreur");
-		        break;
-		}
 
+	public static void reincarnation(Joueur joueur) {
+		if(joueur.getMainJoueur().estVide() && joueur.getPileJoueur().estVide()) {
+		    switch (joueur.getniveauKarmique()) {
+		        case 0:
+		            evoluerNiveauKarmique(joueur, 4);
+		            break;
+		        case 1:
+		            evoluerNiveauKarmique(joueur, 5);
+		            break;
+		        case 2:
+		            evoluerNiveauKarmique(joueur, 6);
+		            break;
+		        case 3:
+		            evoluerNiveauKarmique(joueur, 7); // -> Transcendance
+		            break;
+		        default:
+		            System.out.println("Erreur");
+		            break;
+		    }
 		}
 	}
+	
+	public static void evoluerNiveauKarmique(Joueur joueur, int seuilPoints) {
+	    if (joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= seuilPoints) {
+	        joueur.setniveauKarmique();
+	    } 
+	    else if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() + joueur.getanneauxKarmique() >= seuilPoints){
+	        // demande choix utiliser anneaux karmiques
+	        // implémenter renaissance(joueur) ici ou appeler la méthode si nécessaire
+	    }
+	    else {
+	    	System.out.println("Vous n'avez pas gagné de niveau sur l'échelle karmique");
+	    	joueur.setanneauxKarmique();
+	    }
+
+	    renaissance(joueur);
+	}
+	
+	
 	public static void renaissance(Joueur joueur) {
+		// Reconstruction Main et Pile de jeu
 		// si renaissance -> fin de tour
 		// défausser oeuvres fosse
 		// cartes vie futur -> main
@@ -182,23 +147,25 @@ public class MoteurJeu {
 	public static boolean victoire(Joueur[] joueurs) {
 		// Appelée au début de chaque loop de jeu
 		for (Joueur joueur : joueurs) {
-			if(joueur.getniveauKarmique() ==4) {
+			if(joueur.getniveauKarmique() == 4) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	
-	public static void choixJoueur() {
-		// Choix à chaque tour
-		;
-	}
-	
-	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique) {
+	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique, Lieu fosse) {
 		// if coutKarmique not empty
 		// Proposer choix au joueur de vie futur ou fosse
 		if(!coutKarmique.estVide()) {
 			// proposer au joueur de prendre la carte dans sa vie future
+			
+			// if ...
+			// coutKarmique.deplacerCarte(joueur.getVieFutureJoueur());
+			
+			// else
+			// coutKarmique.deplacerCarte(fosse);
 		}
 		;
 	}
@@ -210,6 +177,49 @@ public class MoteurJeu {
 		}
 		return joueurs[0];
 	}
+	
+	public static void jouerCarte(Joueur[] joueurs, Joueur joueur, Lieu source, Lieu fosse, Lieu coutKarmique) {
+		Scanner scannerJouer = new Scanner(System.in);
+		System.out.println(joueur.getMainJoueur());
+    	
+    	System.out.println("Options : ");
+		System.out.println("1 - Jouer une carte pour son pouvoir");
+		System.out.println("2 - Joueur une carte pour ses points");
+		System.out.println("3 - Joueur une carte pour son futur");
+		System.out.print("Choix : ");
+        int choix3 = scannerJouer.nextInt();
+        scannerJouer.nextLine(); // Ajouter cette ligne pour consommer le reste de la ligne
+        
+        //check input
+        
+		System.out.println("Quel est le nom de la carte à jouer ?");
+        String name = scannerJouer.nextLine();
+
+        
+        switch (choix3) {
+            case 1: // Pouvoir OK
+            	Joueur adversaire = getAdversaire(joueur, joueurs);
+            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse);
+                joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
+                break;
+                
+            case 2: // Points OK
+                joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
+                System.out.println(joueur.getOeuvresJoueur()); // visible de tous
+                System.out.println(joueur.getMainJoueur());
+                break;
+                
+            case 3: // Futur OK
+                joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
+                break;
+                
+            default:
+                System.out.println("Choix non valide");
+                break;
+        }
+        scannerJouer.close();
+        
+	}
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -219,7 +229,7 @@ public class MoteurJeu {
 		Lieu coutKarmique = new Lieu();
 
 		generationSource(source);
-		//source.melanger();
+		source.melanger();
 		
 		Joueur[] joueurs = new Joueur[2];
 		
@@ -246,32 +256,23 @@ public class MoteurJeu {
         	System.out.println("ERREUR");
         	// gestion d'erreur à faire sur un while
         }
-        
-
-        
-		
 		
 		generationPiles(joueurs[0], source);
 		generationPiles(joueurs[1], source);
 		
 		// Fin d'initialisation
 		
-		while (!victoire(joueurs)) { // condition de break !victoire() mais en void actuellement
-			
-			
-		    // Code à exécuter tant que la condition de victoire est fausse
+		while (!victoire(joueurs)) { // Code à exécuter tant que la condition de victoire est fausse
 			
 			
 			for (Joueur joueur : joueurs) {
-	            // System.out.println("Nom : " + joueur.getNom());
 				System.out.println("Joueur suivant :");
 				
 				reincarnation(joueur);
-				checkCoutKarmique(joueur, coutKarmique);
+				checkCoutKarmique(joueur, coutKarmique, fosse);
 				
 				if(!(joueur.getPileJoueur().estVide())) {
-					// Pile non vide
-					// System.out.println(joueur.getPileJoueur());
+					// Si pile non vide 
 					
 					System.out.println("Options : ");
 					System.out.println("1 - Piocher une carte");
@@ -282,54 +283,15 @@ public class MoteurJeu {
 			        // check sur choix pour piocher / passer son tour
 			        
 			        if(choix2 == 2) {
-			        	break;
+			        	break; // Passe son tour
 			        }
 			        else if(choix2 == 1) { // Piocher carte
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
 			        }
 				}
 			    
-			    System.out.println(joueur.getMainJoueur());
-			        	
-	        	System.out.println("Options : ");
-				System.out.println("1 - Jouer une carte pour son pouvoir");
-				System.out.println("2 - Joueur une carte pour ses points");
-				System.out.println("3 - Joueur une carte pour son futur");
-				System.out.print("Choix : ");
-		        int choix3 = scanner.nextInt();
-		        scanner.nextLine(); // Ajouter cette ligne pour consommer le reste de la ligne
-		        
-		        //check input
-		        
-				System.out.println("Quel est le nom de la carte à jouer ?");
-		        String name = scanner.nextLine();
-
-		        
-		        switch (choix3) {
-		            case 1: // Pouvoir OK
-		            	Joueur adversaire = getAdversaire(joueur, joueurs);
-		            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse);
-		                joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
-		                break;
-		                
-		            case 2: // Points OK
-		                joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
-		                System.out.println(joueur.getOeuvresJoueur()); // visible de tous
-		                System.out.println(joueur.getMainJoueur());
-		                break;
-		                
-		            case 3: // Futur OK
-		                joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
-		                break;
-		                
-		            default:
-		                System.out.println("Choix non valide");
-		                break;
-		        }
-		        
-				     
-			        
-					
+				jouerCarte(joueurs, joueur, source, fosse, coutKarmique);
+			    		
 			} // loop des joueurs
 	    } // loop de jeu
 		scanner.close();
