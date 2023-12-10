@@ -1,6 +1,8 @@
 package cartes;
 
 import main.TypeCarte;
+import main.Joueur;
+import main.Lieu;
 import main.Pouvoirs;
 
 public class Carte {
@@ -62,8 +64,8 @@ public class Carte {
 		this.point = point;
 	}
 	
-	public void appliquerPouvoir() {
-		this.pouvoir.appliquerPouvoir();
+	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
+		this.pouvoir.appliquerPouvoir(joueur, adversaire, source, fosse);
 	}
 	
 }

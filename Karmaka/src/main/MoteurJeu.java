@@ -16,6 +16,7 @@ public class MoteurJeu {
 	
 	
 	public static void generationSource(Lieu paquet) {
+		
 		// Cartes bleues
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
@@ -201,6 +202,14 @@ public class MoteurJeu {
 		}
 		;
 	}
+	
+	public static Joueur getAdversaire(Joueur joueur, Joueur[] joueurs) {
+		// On peut implméenter le choix des adversaires si > 2 joueurs
+		if(joueurs[0] == joueur) {
+			return joueurs[1];
+		}
+		return joueurs[0];
+	}
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -210,7 +219,7 @@ public class MoteurJeu {
 		Lieu coutKarmique = new Lieu();
 
 		generationSource(source);
-		source.melanger();
+		//source.melanger();
 		
 		Joueur[] joueurs = new Joueur[2];
 		
@@ -298,7 +307,8 @@ public class MoteurJeu {
 		        
 		        switch (choix3) {
 		            case 1: // Pouvoir OK
-		            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir();
+		            	Joueur adversaire = getAdversaire(joueur, joueurs);
+		            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse);
 		                joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
 		                break;
 		                
