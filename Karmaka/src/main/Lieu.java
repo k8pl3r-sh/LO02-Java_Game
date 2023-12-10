@@ -69,6 +69,18 @@ public class Lieu {
 	    }
 		
 	}*/
+	
+	public Carte retourneCarteLaPlusHaute() {
+	    // Vérifie si le lieu actuel n'est pas vide
+	    if (!estVide()) {
+	        // Obtient la dernière carte du lieu actuel
+	        Carte carteLaPlusHaute = tasCartes.peekLast(); // Utilisation de peekLast() pour obtenir la dernière carte sans la retirer
+	        return carteLaPlusHaute;
+	    }
+	    return null;
+	}
+	
+	
 	// on précise le joueur avec joueur.getPileJoueur()
 	public void deplacerCarte(Lieu lieuCible) {
 		if (!estVide()) {

@@ -11,9 +11,17 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir CoupdOeil");
         }
     },
-    RevesBrises {
+    RevesBrises { // à vérifier
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
-            System.out.println("Appliquer pouvoir RevesBrises");
+            System.out.println("Application pouvoir RevesBrises");
+            if(!adversaire.getVieFutureJoueur().estVide()) {
+            	adversaire.getVieFutureJoueur().deplacerCarte(joueur.getVieFutureJoueur());
+        
+            }
+            else {
+            	System.out.println("Erreur");
+            }
+            
         }
     },
     Deni {
@@ -21,9 +29,15 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Deni");
         }
     },
-    Vol {
+    Vol { // à vérifier
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
             System.out.println("Appliquer pouvoir Vol");
+            if(!adversaire.getOeuvresJoueur().estVide()) {
+            	adversaire.getOeuvresJoueur().deplacerCarte(joueur.getMainJoueur());
+            }
+            else {
+            	System.out.println("Erreur");
+            }
         }
     },
     Destinee {
@@ -33,7 +47,8 @@ public enum Pouvoirs {
     },
     Duperie {
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
-            System.out.println("Appliquer pouvoir Duperie");
+            System.out.println("Application pouvoir Duperie");
+            
         }
     },
     Lendemain {
@@ -61,7 +76,7 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Semis");
         }
     },
-    Voyage {
+    Voyage { // OK
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
             System.out.println("Appliquer pouvoir Voyage");
             source.distribuerCarteLaPlusHaute(joueur);
@@ -85,14 +100,21 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Crise");
         }
     },
-    Fournaise {
+    Fournaise { // à vérifier
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
-            System.out.println("Appliquer pouvoir Fournaise");
+            System.out.println("Application pouvoir Fournaise");
+            if(!adversaire.getVieFutureJoueur().estVide()) {
+                adversaire.getVieFutureJoueur().deplacerCarte(fosse);
+                adversaire.getVieFutureJoueur().deplacerCarte(fosse);
+                }
         }
     },
-    Vengeance {
+    Vengeance { // à vérifier
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
-            System.out.println("Appliquer pouvoir Vengeance");
+            System.out.println("Application pouvoir Vengeance");
+            if(!adversaire.getOeuvresJoueur().estVide()) {
+            adversaire.getOeuvresJoueur().deplacerCarte(fosse);
+            }
         }
     },
     Panique {
@@ -115,9 +137,16 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Incarnation");
         }
     },
-    Mimetisme {
+    Mimetisme { // à vérifier
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
-            System.out.println("Appliquer pouvoir Mimetisme");
+            System.out.println("Application pouvoir Mimetisme");
+            if(!adversaire.getOeuvresJoueur().estVide()) {
+            	adversaire.getOeuvresJoueur().retourneCarteLaPlusHaute().appliquerPouvoir(joueur, adversaire, source, fosse);
+            }
+            else {
+            	System.out.println("Erreur");
+            }
+            
         }
     };
 
