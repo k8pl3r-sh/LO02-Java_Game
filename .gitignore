@@ -29,3 +29,4 @@ replay_pid*
 # More bugs
 Karmaka/.DS_Store
 Karmaka/bin/*
+.DS_Store
