@@ -1,6 +1,8 @@
 package main;
 
 import cartes.*;
+import java.util.Scanner;
+
 import main.TypeCarte;
 
 public class MoteurJeu {
@@ -113,21 +115,17 @@ public class MoteurJeu {
 	}
 	
 	public static void choixJoueur() {
-		// Vérifie la condition de victoire
+		// Choix à chaque tour
 		;
 	}
-	
-
-	
-	
 
 	public static void main(String[] args) {
-
-
+		Scanner scanner = new Scanner(System.in);
 		
 		Lieu source = new Lieu();
 		Lieu fosse = new Lieu();
-		// créer pile temporaire pour dons de carte
+		Lieu coutKarmique = new Lieu();
+
 		generationSource(source);
 		source.melanger();
 		
@@ -137,7 +135,27 @@ public class MoteurJeu {
 		joueurs[0] = new Joueur();
 		joueurs[1] = new Joueur();
 		
-		// ask Joueur ou bot en face
+		// choix bot ou joueur
+		System.out.println("Options : ");
+		System.out.println("1 - 1V1 contre un joueur");
+		System.out.println("2 - 1V1 contre un robot");
+		System.out.print("Choix : ");
+        int choix = scanner.nextInt();
+        
+        if(choix == 2) {
+        	System.out.println("Vous allez jouez contre un robot");
+        	// todo
+        }
+        else if (choix == 1) {
+        	System.out.println("Vous allez jouez contre un joueur");
+        	//todo
+        }
+        else {
+        	System.out.println("ERREUR");
+        	// gestion d'erreur à faire sur un while
+        }
+        
+		
 		
 		generationPiles(joueurs[0], source);
 		generationPiles(joueurs[1], source);
@@ -145,7 +163,7 @@ public class MoteurJeu {
 		// Fin d'initialisation
 		
 		while (!victoire()) {
-		    // Code à exécuter tant que la condition est vraie
+		    // Code à exécuter tant que la condition de victoire est fausse
 		    // Cette partie du code sera répétée tant que la condition est vraie
 			
 			
@@ -162,8 +180,88 @@ public class MoteurJeu {
 			
 			// Cout Karmique :
 			// affichage carte tas temporaire -> la défausser OU la placer sur la vie future
+			
+			
+			for (Joueur joueur : joueurs) {
+	            // System.out.println("Nom : " + joueur.getNom());
+				System.out.println("Joueur suivant :");
+				
+				if(!(joueur.getPileJoueur().estVide())) {
+					// Pile non vide
+					
+					// Check passer son tour
+					System.out.println("Options : ");
+					System.out.println("1 - Piocher une carte");
+					System.out.println("2 - Passer son tour");
+					System.out.print("Choix : ");
+			        int choix2 = scanner.nextInt();
+			        
+			        // check sur choix pour piocher / passer son tour
+			        
+			        if(choix2 == 2) {
+			        	// terminer la boucle du tour
+			        	break;
+			        }
+				}
+			    
+				// Si pile joueur vide ou choix de piocher
+				source.distribuerCarteLaPlusHaute(joueur);
+			    System.out.println(joueur.getMainJoueur());
+			        	
+	        	System.out.println("Options : ");
+				System.out.println("1 - Jouer une carte pour son pouvoir");
+				System.out.println("2 - Joueur une carte pour ses points");
+				System.out.println("3 - Joueur une carte pour son futur");
+				System.out.print("Choix : ");
+		        int choix3 = scanner.nextInt();
+		        scanner.nextLine(); // Ajouter cette ligne pour consommer le reste de la ligne
+		        
+		        //check input
+		        
+				System.out.println("Quel est le nom de la carte à jouer ?");
+		        String name = scanner.nextLine();
+		       
+		        // Gestion des erreurs à faire : à faire dans lieu pour déplacer carte
+		        
+				Carte carteTrouvee = null;
+				for (Carte carte : joueur.getMainJoueur().getTasCartes()) {
+				    if (carte.getNom().equalsIgnoreCase(name)) {
+				        carteTrouvee = carte;
+				        break; // Sortir de la boucle une fois que la carte est trouvée
+				    }
+				}
+				
+				if (carteTrouvee == null) { // existence carte
+					System.out.println("Carte non trouvée.");
+				}
+		        
+		        switch (choix3) {
+		            case 1: // Pouvoir
+		                carteTrouvee.appliquerPouvoir(); // à changer pour faire les vérifications dans lieu
+		                // puis donner la carte à la pile temporaire
+		                //joueur.getMainJoueur().getTasCartes().deplacerCarteParNom(name, coutKarmique);
+		                
+		                break;
+		            case 2: // Points
+		                System.out.println("Jouer une carte pour ses points");
+		                break;
+		                
+		            case 3: // Futur
+		                System.out.println("Jouer une carte pour son futur");
+		                break;
+		                
+		            default:
+		                System.out.println("Choix non valide");
+		                break;
+		        }
+		        
+				     
+			        
+					
+				}
+	        }
+		scanner.close();
 		}
-		
-		
-	}
 }
+
+

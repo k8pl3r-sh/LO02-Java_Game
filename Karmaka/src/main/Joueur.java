@@ -8,6 +8,7 @@ public class Joueur {
 	public Lieu vieFutureJoueur;
 	
 	public Joueur() {
+		// implémenter un nom de joueur ?
 		this.mainJoueur = new Lieu();
 		this.pileJoueur = new Lieu();
 		this.oeuvresJoueur = new Lieu();

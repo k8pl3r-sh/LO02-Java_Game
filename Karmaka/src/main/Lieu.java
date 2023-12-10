@@ -78,5 +78,19 @@ public class Lieu {
 	    }
 		
 	}
+	
+	public boolean removeCarte(Carte carte) { // à tester
+	    Iterator<Carte> iterator = tasCartes.iterator();
+	    while (iterator.hasNext()) {
+	        Carte carteDansLeLieu = iterator.next();
+	        if (carteDansLeLieu.equals(carte)) {
+	            iterator.remove(); // Retire la carte du lieu
+	            return true; // Carte retirée avec succès
+	        }
+	    }
+	    return false; // La carte n'a pas été trouvée dans ce lieu
+	}
+	
+	// Méthode deplacerCarteParNom(String NomCarte, Lieu destination) à faire
 
 }
