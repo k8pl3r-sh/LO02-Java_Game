@@ -1,4 +1,4 @@
-package test_projet_LO02;
+package main;
 
 public enum TypeCarte {
 	BLEU, ROUGE, VERT, MOSAIQUE

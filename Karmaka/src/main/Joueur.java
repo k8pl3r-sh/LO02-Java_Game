@@ -1,17 +1,21 @@
-package test_projet_LO02;
-import java.util.*;
+package main;
 
 public class Joueur {
 	private Lieu mainJoueur;
 	private Lieu pileJoueur;
 	private Lieu oeuvresJoueur;
 	private Lieu vieFutureJoueur;
+	private int niveauKarmique;
+	private int anneauxKarmique;
 	
 	public Joueur() {
-		mainJoueur = new Lieu();
-		pileJoueur = new Lieu();
-		oeuvresJoueur = new Lieu();
-		vieFutureJoueur = new Lieu();
+		// implémenter un nom de joueur ?
+		this.mainJoueur = new Lieu();
+		this.pileJoueur = new Lieu();
+		this.oeuvresJoueur = new Lieu();
+		this.vieFutureJoueur = new Lieu();
+		this.niveauKarmique = 0;
+		this.anneauxKarmique = 0;
 	}
 	
 	public Lieu getMainJoueur() {
@@ -37,6 +41,18 @@ public class Joueur {
 	}
 	public void setVieFutureJoueur(Lieu vieFutureJoueur) {
 		this.vieFutureJoueur = vieFutureJoueur;
+	}
+	public int getniveauKarmique() {
+		return niveauKarmique;
+	}
+	public void setniveauKarmique() {
+		this.niveauKarmique += niveauKarmique;
+	}
+	public int getanneauxKarmique() {
+		return niveauKarmique;
+	}
+	public void setanneauxKarmique() {
+		this.anneauxKarmique += anneauxKarmique;
 	}
 	
 	
