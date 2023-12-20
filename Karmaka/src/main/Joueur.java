@@ -7,9 +7,10 @@ public class Joueur {
 	private Lieu vieFutureJoueur;
 	private int niveauKarmique;
 	private int anneauxKarmique;
+	// variable bot/ joueur
 	
 	public Joueur() {
-		// implémenter un nom de joueur ?
+		// implémenter la variable bot/joueur
 		this.mainJoueur = new Lieu();
 		this.pileJoueur = new Lieu();
 		this.oeuvresJoueur = new Lieu();
@@ -53,6 +54,16 @@ public class Joueur {
 	}
 	public void setanneauxKarmique() {
 		this.anneauxKarmique += anneauxKarmique;
+	}
+	
+	public void choix() {
+		// à développer : permet de faire le choix en fonction de joueur/bot
+		;
+	}
+	
+	public boolean estHumain() {
+		// Retourne True si ce n'est pas un bot
+		;
 	}
 	
 	
