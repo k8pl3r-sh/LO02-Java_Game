@@ -7,6 +7,7 @@ public class Joueur {
 	private Lieu vieFutureJoueur;
 	private int niveauKarmique;
 	private int anneauxKarmique;
+	private boolean bot;
 	// variable bot/ joueur
 	
 	public Joueur() {
@@ -17,6 +18,7 @@ public class Joueur {
 		this.vieFutureJoueur = new Lieu();
 		this.niveauKarmique = 0;
 		this.anneauxKarmique = 0;
+		this.bot = false;
 	}
 	
 	public Lieu getMainJoueur() {
@@ -54,17 +56,68 @@ public class Joueur {
 	}
 	public void setanneauxKarmique() {
 		this.anneauxKarmique += anneauxKarmique;
+	}	
+	public boolean isBot() {
+		if(this.bot == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
-	public void choix() {
-		// à développer : permet de faire le choix en fonction de joueur/bot
-		;
+	public void setBot() {
+		this.bot = true;
+	}
+	public int choix(Scanner scanner, List<Integer> listePoss) {
+		int choixJoueur;
+		if(bot) {
+			// implémenter la stratégie du bot
+			choixJoueur = 1;
+		}
+		else {
+			// Joueur
+			do {
+                System.out.println("Entrez votre choix :");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Veuillez entrer un choix possible :");
+                    scanner.next(); // Ignore la saisie invalide
+                }
+                choixJoueur = scanner.nextInt();
+            } while (!listePoss.contains(choixJoueur));
+		}
+		return choixJoueur;
 	}
 	
-	public boolean estHumain() {
-		// Retourne True si ce n'est pas un bot
-		;
+	public List<String> choix(Scanner scanner, String[] args) {
+		String choixJoueur;
+		if(bot) { // SURCHARGE POUR String
+			// implémenter la stratégie du bot
+			choixJoueur = "BOT";
+		}
+		else {
+			// Joueur
+			boolean found;
+			do {
+	            System.out.println("Entrez votre choix :");
+	            choixJoueur = scanner.nextLine();
+
+	            for (String arg : args) {
+	                if (arg.equals(choixJoueur)) {
+	                    found = true;
+	                    break;
+	                }
+	            }
+
+	            if (!found) {
+	                System.out.println("Veuillez entrer un choix possible :");
+	            }
+
+	        } while (!found);
+	    }
+		return choixJoueur;
 	}
+	
 	
 	
 	
