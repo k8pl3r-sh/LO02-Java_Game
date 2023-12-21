@@ -1,5 +1,7 @@
 package main;
 
+import java.util.*;
+
 public class Joueur {
 	private Lieu mainJoueur;
 	private Lieu pileJoueur;
