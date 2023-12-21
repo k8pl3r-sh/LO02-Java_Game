@@ -2,6 +2,8 @@ package main;
 
 import java.util.*;
 
+import cartes.Carte;
+
 public class Joueur {
 	private Lieu mainJoueur;
 	private Lieu pileJoueur;
@@ -91,11 +93,12 @@ public class Joueur {
 		return choixJoueur;
 	}
 	
-	public String choix(Scanner scanner, Lieu args) { // NE FONCTIONNE PAS
+	public String choix(Scanner scanner, Lieu tas) { // NE FONCTIONNE PAS
+		// en paramètre : joueur.getMainJoueur()
 		String choixJoueur;
 		if(bot) { // SURCHARGE POUR String
 			// implémenter la stratégie du bot
-			choixJoueur = "BOT";
+			// choixJoueur = tas.getCarteParNom(name);
 		}
 		else {
 			// Joueur
@@ -104,12 +107,13 @@ public class Joueur {
 	            System.out.println("Entrez votre choix :");
 	            choixJoueur = scanner.nextLine();
 
-	            for (Lieu arg : getTasCartes()) {
-	                if (arg.equals(choixJoueur)) {
-	                    found = true;
-	                    break;
-	                }
-	            }
+	            for (Carte carte : tas) {
+	    	        if (carte.getNom().equalsIgnoreCase(choixJoueur)) {
+	    	            choixJoueur = carte.getNom();
+	    	            found = true;
+	    	            break;
+	    	        }
+	    	    }
 
 	            if (!found) {
 	                System.out.println("Veuillez entrer un choix possible :");
