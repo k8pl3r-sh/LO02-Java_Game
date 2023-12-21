@@ -5,7 +5,7 @@ import java.util.Scanner;
 import cartes.Carte;
 
 public class MoteurJeuEssai {
-public static void generationSource(Lieu paquet) {
+	public static void generationSource(Lieu paquet) {
 		
 		// Cartes bleues
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
