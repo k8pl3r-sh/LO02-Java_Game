@@ -1,6 +1,9 @@
 package cartes;
 
 import main.TypeCarte;
+
+import java.util.Scanner;
+
 import main.Joueur;
 import main.Lieu;
 import main.Pouvoirs;
@@ -64,8 +67,8 @@ public class Carte {
 		this.point = point;
 	}
 	
-	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse) {
-		this.pouvoir.appliquerPouvoir(joueur, adversaire, source, fosse);
+	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner scanner) {
+		this.pouvoir.appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
 	}
 	
 }

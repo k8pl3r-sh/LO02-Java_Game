@@ -45,7 +45,7 @@ public class MoteurJeu {
 		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
 		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
 		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
-		paquet.addCarte(new Carte("Voyage", Pouvoirs.Voyage, TypeCarte.VERT, 3));
+		//
 		paquet.addCarte(new Carte("Voyage", Pouvoirs.Voyage, TypeCarte.VERT, 3));
 		paquet.addCarte(new Carte("Jubile", Pouvoirs.Jubile, TypeCarte.VERT, 3));
 		paquet.addCarte(new Carte("Jubile", Pouvoirs.Jubile, TypeCarte.VERT, 3));
@@ -54,9 +54,8 @@ public class MoteurJeu {
 		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
 		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
 		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
-		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
-		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
+		
+		// paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
 		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
 		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
 		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
@@ -79,6 +78,12 @@ public class MoteurJeu {
 		paquet.addCarte(new Carte("Incarnation", Pouvoirs.Incarnation, TypeCarte.MOSAIQUE, 1));
 		paquet.addCarte(new Carte("Mimetisme", Pouvoirs.Mimetisme, TypeCarte.MOSAIQUE, 1));
 		paquet.addCarte(new Carte("Mimetisme", Pouvoirs.Mimetisme, TypeCarte.MOSAIQUE, 1));
+		
+		///
+		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
+		paquet.addCarte(new Carte("Voyage", Pouvoirs.Voyage, TypeCarte.VERT, 3));
+		paquet.addCarte(new Carte("Crise", Pouvoirs.Crise, TypeCarte.ROUGE, 2));
 	}
 	
 	
@@ -178,8 +183,8 @@ public class MoteurJeu {
 		return joueurs[0];
 	}
 	
-	public static void jouerCarte(Joueur[] joueurs, Joueur joueur, Lieu source, Lieu fosse, Lieu coutKarmique) {
-		Scanner scannerJouer = new Scanner(System.in);
+	public static void jouerCarte(Joueur[] joueurs, Joueur joueur, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner scanner) {
+		//Scanner scannerJouer = new Scanner(System.in);
 		System.out.println(joueur.getMainJoueur());
     	
     	System.out.println("Options : ");
@@ -187,19 +192,19 @@ public class MoteurJeu {
 		System.out.println("2 - Joueur une carte pour ses points");
 		System.out.println("3 - Joueur une carte pour son futur");
 		System.out.print("Choix : ");
-        int choix3 = scannerJouer.nextInt();
-        scannerJouer.nextLine(); // Ajouter cette ligne pour consommer le reste de la ligne
+        int choix3 = scanner.nextInt();
+        scanner.nextLine(); // Ajouter cette ligne pour consommer le reste de la ligne
         
         //check input
         
 		System.out.println("Quel est le nom de la carte à jouer ?");
-        String name = scannerJouer.nextLine();
+        String name = scanner.nextLine();
 
         
         switch (choix3) {
             case 1: // Pouvoir OK
             	Joueur adversaire = getAdversaire(joueur, joueurs);
-            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse);
+            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
                 joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
                 break;
                 
@@ -217,7 +222,6 @@ public class MoteurJeu {
                 System.out.println("Choix non valide");
                 break;
         }
-        scannerJouer.close();
         
 	}
 
@@ -229,7 +233,7 @@ public class MoteurJeu {
 		Lieu coutKarmique = new Lieu();
 
 		generationSource(source);
-		source.melanger();
+		// source.melanger(); à décommenter après debug
 		
 		Joueur[] joueurs = new Joueur[2];
 		
@@ -290,7 +294,7 @@ public class MoteurJeu {
 			        }
 				}
 			    
-				jouerCarte(joueurs, joueur, source, fosse, coutKarmique);
+				jouerCarte(joueurs, joueur, source, fosse, coutKarmique, scanner);
 			    		
 			} // loop des joueurs
 	    } // loop de jeu

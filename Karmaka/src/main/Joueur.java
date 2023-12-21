@@ -91,7 +91,7 @@ public class Joueur {
 		return choixJoueur;
 	}
 	
-	public List<String> choix(Scanner scanner, String[] args) {
+	public String choix(Scanner scanner, Lieu args) { // NE FONCTIONNE PAS
 		String choixJoueur;
 		if(bot) { // SURCHARGE POUR String
 			// implémenter la stratégie du bot
@@ -99,12 +99,12 @@ public class Joueur {
 		}
 		else {
 			// Joueur
-			boolean found;
+			boolean found = false;
 			do {
 	            System.out.println("Entrez votre choix :");
 	            choixJoueur = scanner.nextLine();
 
-	            for (String arg : args) {
+	            for (Lieu arg : getTasCartes()) {
 	                if (arg.equals(choixJoueur)) {
 	                    found = true;
 	                    break;
