@@ -56,6 +56,34 @@ public enum Pouvoirs {
     Destinee {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Destinee");
+            int size = source.getTasCartes().size();
+            int start = size - 3; 
+
+            if (start >= 0) {
+                System.out.println("Les trois dernieres cartes de la source sont :");
+                for (int i = start; i < size; i++) {
+                    System.out.println(source.getTasCartes().get(i));
+                }
+            } else {
+                System.out.println("La liste contient moins de trois éléments.");
+            }
+            List<Integer> listeNombre = List.of(1,2);
+            System.out.println("Choisisez le nombre de carte que vous souhaitez mettre dans votre Vie Future");
+            int nbChoix = joueur.choix(entree, listeNombre);
+            entree.nextLine(); // a implementer dans choix
+            for (int i=1; i<=nbChoix ; i++) {
+            	System.out.println("Quel est le nom de la carte à récuperer ?");
+                String name = entree.nextLine();
+                source.deplacerCarteParNom(name, joueur.getVieFutureJoueur()); 
+            }
+            if(nbChoix == 2) {
+            	List<Integer> listeNombre2 = List.of(0,1);
+            	int nbChoix2 = joueur.choix(entree, listeNombre2);
+            	if(nbChoix2 == 1) {
+            		source.melanger();
+            	}
+            }
+            System.out.println(joueur.getVieFutureJoueur());
         }
     },
     Duperie {
@@ -124,7 +152,7 @@ public enum Pouvoirs {
             for (Carte carte : adversaire.getMainJoueur()) {
                 listeCartes.add(carte);
             }
-            adversaire.getMainJoueur().remove(adversaire.choix(entree, adversaire.getOeuvresJoueur()));
+            adversaire.getMainJoueur().removeCarte(adversaire.choix(entree, adversaire.getOeuvresJoueur()));
         
         }
     },
