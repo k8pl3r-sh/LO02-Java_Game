@@ -307,7 +307,7 @@ public class MoteurJeu {
 			
 			
 			for (Joueur joueur : joueurs) {
-				System.out.println("Joueur suivant :");
+				System.out.println("C'est ton tour " + joueur.getNomJoueur());
 				
 				reincarnation(joueur);
 				checkCoutKarmique(joueur, coutKarmique, fosse);
