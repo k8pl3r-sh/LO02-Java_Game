@@ -3,6 +3,7 @@ package main;
 import java.util.*;
 
 import cartes.Carte;
+import main.Sauvegarde;
 
 public class Joueur {
 	private Lieu mainJoueur;
@@ -106,7 +107,7 @@ public class Joueur {
 	return choixJoueur;
 	}
 	
-	public String choix(Scanner scanner, Lieu tas) { // NE FONCTIONNE PAS
+	public String choix(Scanner scanner, Lieu tas) {
 	// en paramètre : joueur.getMainJoueur()
 	String choixJoueur;
 	if(bot) { // SURCHARGE POUR String
@@ -127,6 +128,18 @@ public class Joueur {
 				  found = true;
 				  break;
 				}
+			}
+			
+			if(choixJoueur == "save") {
+				//Sauvegarde enregistrement = new Sauvegarde();
+				//Sauvegarde.serializeObject(enregistrement, "sauvegarde.ser");
+				// cette méthode ne sérialise qu'un objet
+				System.out.println("Partie sauvegardée, à la prochaine");
+				System.exit(0);
+
+			}
+			else if (choixJoueur == "exit") {
+				System.exit(0);
 			}
 			
 			if (!found) {

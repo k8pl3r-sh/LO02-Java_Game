@@ -267,6 +267,8 @@ public class MoteurJeu {
 	}
 
 	public static void main(String[] args) {
+		
+		// Méthode génération partie à skip si on récupère objets sérialisés
 		Scanner scanner = new Scanner(System.in);
 		
 		Lieu source = new Lieu();
@@ -324,6 +326,9 @@ public class MoteurJeu {
         System.out.print("Joueur 2 : ");
         nomjoueur = scanner.nextLine();
         joueurs[1].setNomJoueur(nomjoueur);
+        
+        System.out.println("Rappel : tapez 'exit' au lieu d'une carte pour quittter");
+        System.out.println("Rappel : tapez 'save' au lieu d'une carte pour sauvegarder");
         
         
         
