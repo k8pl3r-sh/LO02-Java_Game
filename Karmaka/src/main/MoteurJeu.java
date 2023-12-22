@@ -257,7 +257,7 @@ public class MoteurJeu {
 		Lieu coutKarmique = new Lieu();
 
 		generationSource(source);
-		// source.melanger(); à décommenter après debug
+		//source.melanger(); //à décommenter après debug
 		
 		Joueur[] joueurs = new Joueur[2];
 		
@@ -265,14 +265,15 @@ public class MoteurJeu {
 		joueurs[0] = new Joueur();
 		joueurs[1] = new Joueur();
 		
-		source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		source.deplacerCarte(fosse);
-		source.deplacerCarte(fosse);
-		source.deplacerCarte(fosse);
-		source.deplacerCarte(fosse);
+		// pour debug
+		// source.deplacerCarte(joueurs[0].getVieFutureJoueur());
+		//source.deplacerCarte(joueurs[0].getVieFutureJoueur());
+		//source.deplacerCarte(joueurs[0].getVieFutureJoueur());
+		//source.deplacerCarte(joueurs[0].getVieFutureJoueur());
+		//source.deplacerCarte(fosse);
+		//source.deplacerCarte(fosse);
+		//source.deplacerCarte(fosse);
+		//source.deplacerCarte(fosse);
 		
 		// choix bot ou joueur
 		System.out.println("Options : ");

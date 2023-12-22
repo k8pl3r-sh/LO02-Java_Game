@@ -213,13 +213,13 @@ public enum Pouvoirs {
             adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse);
         }
     },
-    Crise { // tested
+    Crise { // OK
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Crise");
             System.out.println("Voici votre main, indiquez la carte que vous souhaitez défausser");
             System.out.println(adversaire.getMainJoueur());
             //String name = entree.nextLine();
-            adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse);
+            adversaire.getMainJoueur().deplacerCarteParNom(adversaire.choix(entree, adversaire.getMainJoueur()), fosse);
             System.out.println(adversaire.getMainJoueur());
         
         }
