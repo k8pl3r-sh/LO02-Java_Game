@@ -279,6 +279,18 @@ public class MoteurJeu {
         	System.out.println("ERREUR");
         	// gestion d'erreur à faire sur un while
         }
+        
+        System.out.println("Nom des joueurs : ");
+        System.out.println("Joueur 1 : ");
+        String nomjoueur = scanner.nextLine();
+        joueurs[0].setNomJoueur(nomjoueur);
+        System.out.println("Joueur 2 : ");
+        nomjoueur = scanner.nextLine();
+        joueurs[1].setNomJoueur(nomjoueur);
+        
+        
+        
+        
 		
 		generationPiles(joueurs[0], source);
 		generationPiles(joueurs[1], source);

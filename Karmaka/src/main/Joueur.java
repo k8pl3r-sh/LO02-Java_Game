@@ -11,6 +11,7 @@ public class Joueur {
 	private Lieu vieFutureJoueur;
 	private int niveauKarmique;
 	private int anneauxKarmique;
+	private String nom;
 	private boolean bot;
 	// variable bot/ joueur
 	
@@ -25,6 +26,12 @@ public class Joueur {
 		this.bot = false;
 	}
 	
+	public String getNomJoueur() {
+		return nom;
+	}
+	public void setNomJoueur(String nom) {
+		this.nom = nom;
+	}
 	public Lieu getMainJoueur() {
 		return mainJoueur;
 	}
