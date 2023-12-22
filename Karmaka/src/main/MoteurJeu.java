@@ -166,6 +166,16 @@ public class MoteurJeu {
 		}
 		return false;
 	}
+	
+	public static String getJoueurVictorieux(Joueur[] joueurs) {
+		// Appelée au début de chaque loop de jeu
+		for (Joueur joueur : joueurs) {
+			if(joueur.getniveauKarmique() == 4) {
+				return joueur.getNomJoueur();
+			}
+		}
+		return "Pour faire plaisir au compilateur";
+	}
 
 	
 	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique, Lieu fosse) {
@@ -263,7 +273,8 @@ public class MoteurJeu {
 		System.out.println("2 - 1V1 contre un robot");
 		System.out.println("3 - 1V1 entre 2 robots");
 		System.out.print("Choix : ");
-        int choix = scanner.nextInt();
+		List<Integer> liste3Entiers = List.of(1, 2);
+        int choix = joueurs[0].choix(scanner, liste3Entiers); // joueurs[0] juste pour profiter de la méthode
         
         if(choix == 2) {
         	System.out.println("Vous allez jouez contre un robot");
@@ -273,16 +284,13 @@ public class MoteurJeu {
         	System.out.println("Vous allez jouez contre un joueur");
         	// rien à faire
         }
-        else if (choix == 3) {
+        else { // choix == 3
         	System.out.println("2 robots vont jouer l'un contre l'autre");
         	joueurs[0].setBot();
         	joueurs[1].setBot();
         }
-        else {
-        	System.out.println("ERREUR");
-        	// gestion d'erreur à faire sur un while
-        }
-        String nomjoueur = scanner.nextLine();
+        
+        String nomjoueur;
         
         System.out.println("Nom des joueurs : ");
         System.out.print("Joueur 1 : ");
@@ -332,6 +340,7 @@ public class MoteurJeu {
 				jouerCarte(joueurs, joueur, source, fosse, coutKarmique, scanner);
 			    		
 			} // loop des joueurs
+		System.out.println("Victoire de " + getJoueurVictorieux(joueurs));
 	    } // loop de jeu
 		scanner.close();
 		}
