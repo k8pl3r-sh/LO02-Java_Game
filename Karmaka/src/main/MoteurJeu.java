@@ -229,7 +229,8 @@ public class MoteurJeu {
 	
 	
 	public static void jouerCarte(Joueur[] joueurs, Joueur joueur, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner scanner) {
-		//Scanner scannerJouer = new Scanner(System.in);
+		//Scanner scannerJouer = new Scanner(System.in)
+		System.out.println("Voici votre main :");;
 		System.out.println(joueur.getMainJoueur());
     	
     	System.out.println("Options : ");
@@ -392,12 +393,14 @@ public class MoteurJeu {
 					List<Integer> listeEntiers = List.of(1, 2);
 					
 			        int choice = joueur.choix(scanner, listeEntiers);
-			        
-			        if(choice == 2) {
-			        	break; // Passe son tour
-			        }
-			        else if(choice == 1) { // Piocher carte
+			        switch(choice) {
+			        case 2 :
+			        	break;
+			        case 1 : // Piocher carte
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
+			        default:
+		                System.out.println("Choix non valide");
+		                break;
 			        }
 				}
 			    
