@@ -16,7 +16,6 @@ public enum Pouvoirs {
                 System.out.println("Quel est le nom de la carte à récuperer ?");
                 //String name = entree.nextLine();
                 //joueur.choix(entree, joueur.getVieFutureJoueur())
-                
                 joueur.getVieFutureJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur()); 
                 System.out.println(joueur.getMainJoueur());
             } else {
@@ -257,7 +256,7 @@ public enum Pouvoirs {
             }
         }
     },
-    Roulette { // reviens dessus plus tard
+    Roulette { // tested
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Roulette");
             System.out.println("Voici votre main");
@@ -265,11 +264,12 @@ public enum Pouvoirs {
             System.out.println("Combien de cartes souhaitez-vous défausser ? (jusqu'à 2)");
             //int nbChoix = entree.nextInt();
             //entree.nextLine();
-            List<Integer> listeEntiers = Arrays.asList(0,1, 2);
+            List<Integer> listeEntiers = Arrays.asList(0,1,2);
             int nbChoix = joueur.choix(entree, listeEntiers);
             for (int i=1; i<=nbChoix ; i++) {
             	System.out.println("Quel est le nom de la carte à défausser ?");
                 //String name = entree.nextLine();
+            	System.out.println(joueur.getMainJoueur());
                 joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse); 
             }
             System.out.println("Combien de cartes souhaitez vous piocher (max : nombre de carte défaussées + 1)");
@@ -282,7 +282,7 @@ public enum Pouvoirs {
             }
         }
     },
-    Bassesse {
+    Bassesse { //tested
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Bassesse");
             System.out.println("2 cartes aléatoire de la main de votre rival on été défaussées");
@@ -294,7 +294,7 @@ public enum Pouvoirs {
             }
         }
     },
-    Incarnation {
+    Incarnation { //tested
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Incarnation");
             System.out.println("Voici vos oeuvres, indiquez la carte que vous souhaitez copier");
