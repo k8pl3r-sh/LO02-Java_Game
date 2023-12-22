@@ -26,7 +26,7 @@ public class Carte {
 
 	@Override
 	public String toString() {
-		return "\nCarte [nom=" + nom + ", pouvoir=" + pouvoir + ", type=" + type + ", point=" + point + "]";
+		return "\nCarte '" + nom + "\nPouvoir : " + pouvoir + ", \nType : " + type + ", point=" + point + "]";
 	}
 
 
