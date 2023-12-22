@@ -68,6 +68,9 @@ public class Joueur {
 	public void setanneauxKarmique() {
 		this.anneauxKarmique += anneauxKarmique;
 	}	
+	public void setanneauxKarmique(int cost) {
+		this.anneauxKarmique -= cost;
+	}	
 	public boolean isBot() {
 		if(this.bot == true) {
 			return true;

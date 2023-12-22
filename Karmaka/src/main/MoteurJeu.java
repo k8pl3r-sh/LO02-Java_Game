@@ -137,7 +137,9 @@ public class MoteurJeu {
 	    } 
 	    else if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() + joueur.getanneauxKarmique() >= seuilPoints){
 	        // demande choix utiliser anneaux karmiques
-	        // implémenter renaissance(joueur, fosse) ici ou appeler la méthode si nécessaire
+	    	int utilise = seuilPoints - joueur.getOeuvresJoueur().sommeMaxParTypeCarte();
+	    	joueur.setanneauxKarmique(utilise);
+	        
 	    }
 	    else {
 	    	System.out.println("Vous n'avez pas gagné de niveau sur l'échelle karmique");
