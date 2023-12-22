@@ -201,16 +201,14 @@ public class MoteurJeu {
 		System.out.println("2 - Joueur une carte pour ses points");
 		System.out.println("3 - Joueur une carte pour son futur");
 		System.out.print("Choix : ");
-        int choix3 = scanner.nextInt();
-        scanner.nextLine(); // Ajouter cette ligne pour consommer le reste de la ligne
-        
-        //check input
+		List<Integer> listeEntiers = List.of(1, 2, 3);
+        int choice = joueur.choix(scanner, listeEntiers);
         
 		System.out.println("Quel est le nom de la carte à jouer ?");
-        String name = scanner.nextLine();
+        String name = joueur.choix(scanner, joueur.getMainJoueur());
 
         
-        switch (choix3) {
+        switch (choice) {
             case 1: // Pouvoir OK
             	Joueur adversaire = getAdversaire(joueur, joueurs);
             	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
@@ -319,14 +317,14 @@ public class MoteurJeu {
 					System.out.println("1 - Piocher une carte");
 					System.out.println("2 - Passer son tour");
 					System.out.print("Choix : ");
-			        int choix2 = scanner.nextInt();
+					List<Integer> listeEntiers = List.of(1, 2);
+					
+			        int choice = joueur.choix(scanner, listeEntiers);
 			        
-			        // check sur choix pour piocher / passer son tour
-			        
-			        if(choix2 == 2) {
+			        if(choice == 2) {
 			        	break; // Passe son tour
 			        }
-			        else if(choix2 == 1) { // Piocher carte
+			        else if(choice == 1) { // Piocher carte
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
 			        }
 				}

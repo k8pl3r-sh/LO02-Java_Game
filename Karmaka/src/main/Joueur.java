@@ -99,6 +99,7 @@ public class Joueur {
 		choixJoueur = scanner.nextInt();
 		} while (!listePoss.contains(choixJoueur));
 	}
+	scanner.nextLine(); // permet de résoudre les soucis de buffers
 	return choixJoueur;
 	}
 	
