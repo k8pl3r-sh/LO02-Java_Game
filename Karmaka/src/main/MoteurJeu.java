@@ -261,21 +261,39 @@ public class MoteurJeu {
 		System.out.println("Options : ");
 		System.out.println("1 - 1V1 contre un joueur");
 		System.out.println("2 - 1V1 contre un robot");
+		System.out.println("3 - 1V1 entre 2 robots");
 		System.out.print("Choix : ");
         int choix = scanner.nextInt();
         
         if(choix == 2) {
         	System.out.println("Vous allez jouez contre un robot");
-        	// todo
+        	joueurs[1].setBot();
         }
         else if (choix == 1) {
         	System.out.println("Vous allez jouez contre un joueur");
-        	//todo
+        	// rien à faire
+        }
+        else if (choix == 3) {
+        	System.out.println("2 robots vont jouer l'un contre l'autre");
+        	joueurs[0].setBot();
+        	joueurs[1].setBot();
         }
         else {
         	System.out.println("ERREUR");
         	// gestion d'erreur à faire sur un while
         }
+        
+        System.out.println("Nom des joueurs : ");
+        System.out.println("Joueur 1 : ");
+        String nomjoueur = scanner.nextLine();
+        joueurs[0].setNomJoueur(nomjoueur);
+        System.out.println("Joueur 2 : ");
+        nomjoueur = scanner.nextLine();
+        joueurs[1].setNomJoueur(nomjoueur);
+        
+        
+        
+        
 		
 		generationPiles(joueurs[0], source);
 		generationPiles(joueurs[1], source);
