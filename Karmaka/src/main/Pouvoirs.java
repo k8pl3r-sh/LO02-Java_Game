@@ -22,14 +22,12 @@ public enum Pouvoirs {
             }
         }	
     },
-    CoupdOeil { // comment on joue une deuxieme carte ?
+    CoupdOeil { // tested
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir CoupdOeil");
             System.out.println(adversaire.getMainJoueur());
-            List<Joueur> joueurs = new ArrayList<>();
-            joueurs.add(joueur);
-            joueurs.add(adversaire);
-            //jouerCarte(joueurs, joueur, source, fosse, coutKarmique);
+            Joueur[] listeJoueurs = new Joueur[] {joueur,adversaire};
+            MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
         }
     },
     RevesBrises { // à vérifier
@@ -245,12 +243,13 @@ public enum Pouvoirs {
             }
         }
     },
-    Panique { // comment rejouer ?
-        public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
+    Panique { 
+    	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Panique");
             if(!adversaire.getPileJoueur().estVide()) {
                  adversaire.getPileJoueur().deplacerCarte(fosse);
-                 //jouerCarte(joueur, joueur, source, fosse, coutKarmique);
+                 Joueur[] listeJoueurs = new Joueur[] {joueur,adversaire};
+                 MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
             }
         }
     },
