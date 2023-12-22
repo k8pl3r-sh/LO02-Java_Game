@@ -125,7 +125,8 @@ public enum Pouvoirs {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Lendemain");
             source.distribuerCarteLaPlusHaute(joueur);
-            //jouerCarte(joueurs, joueur, source, fosse, coutKarmique);
+            Joueur[] listeJoueurs = new Joueur[] {joueur,adversaire};
+            MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
         }
     },
     Sauvetage { //tested
