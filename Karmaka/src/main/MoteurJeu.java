@@ -340,8 +340,9 @@ public class MoteurJeu {
 				jouerCarte(joueurs, joueur, source, fosse, coutKarmique, scanner);
 			    		
 			} // loop des joueurs
-		System.out.println("Victoire de " + getJoueurVictorieux(joueurs));
+		
 	    } // loop de jeu
+		System.out.println("Victoire de " + getJoueurVictorieux(joueurs));
 		scanner.close();
 		}
 
