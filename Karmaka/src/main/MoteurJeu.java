@@ -178,23 +178,30 @@ public class MoteurJeu {
 	}
 
 	
-	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique, Lieu fosse) {
+	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique, Lieu fosse, Scanner scanner) {
 		// if coutKarmique not empty
 		// Proposer choix au joueur de vie futur ou fosse
 		if(!coutKarmique.estVide()) {
 			// proposer au joueur de prendre la carte dans sa vie future
+			Carte cK = coutKarmique.retourneCarteLaPlusHaute();
+			System.out.println("Tu as cette carte que tu peux récupérer : " + cK.getNom());
+			System.out.println("1 - Je la veux pour ma vie future");
+			System.out.println("2 - Je ne la veux pas");
+			System.out.println("Ton choix :");
+			List<Integer> listeEntiers = List.of(1, 2);
+			int choix = joueur.choix(scanner, listeEntiers);
 			
-			// if ...
-			// coutKarmique.deplacerCarte(joueur.getVieFutureJoueur());
-			
-			// else
-			// coutKarmique.deplacerCarte(fosse);
+			if(choix == 1) {
+				coutKarmique.deplacerCarte(joueur.getVieFutureJoueur());
+			}
+			else { // choix == 2
+				coutKarmique.deplacerCarte(fosse);
+			}
 		}
-		;
 	}
 	
 	public static Joueur getAdversaire(Joueur joueur, Joueur[] joueurs) {
-		// On peut implméenter le choix des adversaires si > 2 joueurs
+		// On peut implémenter le choix des adversaires si > 2 joueurs
 		if(joueurs[0] == joueur) {
 			return joueurs[1];
 		}
@@ -316,7 +323,7 @@ public class MoteurJeu {
 				System.out.println("C'est ton tour " + joueur.getNomJoueur());
 				
 				reincarnation(joueur);
-				checkCoutKarmique(joueur, coutKarmique, fosse);
+				checkCoutKarmique(joueur, coutKarmique, fosse, scanner);
 				
 				if(!(joueur.getPileJoueur().estVide())) {
 					// Si pile non vide 
