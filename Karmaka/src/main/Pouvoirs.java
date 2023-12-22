@@ -15,6 +15,8 @@ public enum Pouvoirs {
                 System.out.println(joueur.getVieFutureJoueur());
                 System.out.println("Quel est le nom de la carte à récuperer ?");
                 String name = entree.nextLine();
+                //joueur.choix(entree, joueur.getVieFutureJoueur())
+                
                 joueur.getVieFutureJoueur().deplacerCarteParNom(name, joueur.getMainJoueur()); 
                 System.out.println(joueur.getMainJoueur());
             } else {
@@ -171,11 +173,12 @@ public enum Pouvoirs {
             System.out.println("Voici votre nouvelle main :");
             System.out.println(joueur.getMainJoueur());
             System.out.println("Quelle est la premiere carte que vous souhaitez placer dans votre Vie Future ?");
-            String name = entree.nextLine();
-            joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
+            //String name = entree.nextLine();
+            //joueur.choix(entree, joueur.getMainJoueur())
+            joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getVieFutureJoueur());
             System.out.println("Quelle est la seconde carte que vous souhaitez placer dans votre Vie Future ?");
-            name = entree.nextLine();
-            joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
+            // name = entree.nextLine();
+            joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getVieFutureJoueur());
         }
     },
     Voyage { // tested

@@ -80,56 +80,60 @@ public class Joueur {
 	public void setBot() {
 		this.bot = true;
 	}
+	
+
 	public int choix(Scanner scanner, List<Integer> listePoss) {
-		int choixJoueur;
-		if(bot) {
-			// implémenter la stratégie du bot
-			choixJoueur = 1;
+	int choixJoueur;
+	if(bot) {
+	// implémenter la stratégie du bot
+	choixJoueur = 1;
+	}
+	else {
+	// Joueur
+		do {
+		System.out.println("Entrez votre choix :");
+		while (!scanner.hasNextInt()) {
+		System.out.println("Veuillez entrer un choix possible :");
+		scanner.next(); // Ignore la saisie invalide
 		}
-		else {
-			// Joueur
-			do {
-                System.out.println("Entrez votre choix :");
-                while (!scanner.hasNextInt()) {
-                    System.out.println("Veuillez entrer un choix possible :");
-                    scanner.next(); // Ignore la saisie invalide
-                }
-                choixJoueur = scanner.nextInt();
-            } while (!listePoss.contains(choixJoueur));
-		}
-		return choixJoueur;
+		choixJoueur = scanner.nextInt();
+		} while (!listePoss.contains(choixJoueur));
+	}
+	return choixJoueur;
 	}
 	
 	public String choix(Scanner scanner, Lieu tas) { // NE FONCTIONNE PAS
-		// en paramètre : joueur.getMainJoueur()
-		String choixJoueur;
-		if(bot) { // SURCHARGE POUR String
-			// implémenter la stratégie du bot
-			// choixJoueur = tas.getCarteParNom(name);
-		}
-		else {
-			// Joueur
-			boolean found = false;
-			do {
-	            System.out.println("Entrez votre choix :");
-	            choixJoueur = scanner.nextLine();
-
-	            for (Carte carte : tas) {
-	    	        if (carte.getNom().equalsIgnoreCase(choixJoueur)) {
-	    	            choixJoueur = carte.getNom();
-	    	            found = true;
-	    	            break;
-	    	        }
-	    	    }
-
-	            if (!found) {
-	                System.out.println("Veuillez entrer un choix possible :");
-	            }
-
-	        } while (!found);
-	    }
-		return choixJoueur;
+	// en paramètre : joueur.getMainJoueur()
+	String choixJoueur;
+	if(bot) { // SURCHARGE POUR String
+	// implémenter la stratégie du bot
+	// choixJoueur = tas.getCarteParNom(name);
+	choixJoueur = scanner.nextLine(); // A CHANGER JUSTE POUR COMPIL
 	}
+	else {
+		// Joueur
+		boolean found = false;
+		do {
+			System.out.println("Entrez votre choix :");
+			choixJoueur = scanner.nextLine();
+			
+			for (Carte carte : tas.getTasCartes()) {
+				if (carte.getNom().equalsIgnoreCase(choixJoueur)) {
+				  choixJoueur = carte.getNom();
+				  found = true;
+				  break;
+				}
+			}
+			
+			if (!found) {
+				System.out.println("Veuillez entrer un choix possible :");
+			}
+			
+		} while (!found);
+	}
+	return choixJoueur;
+	}
+
 	
 	
 	

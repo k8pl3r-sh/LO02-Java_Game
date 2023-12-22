@@ -133,4 +133,5 @@ public class Lieu {
         int sommeMax = sommeParType.values().stream().max(Integer::compareTo).orElse(0);
         return sommeMax;
     }
+	
 }
