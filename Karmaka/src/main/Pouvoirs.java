@@ -14,10 +14,10 @@ public enum Pouvoirs {
             	System.out.println("Appliquer pouvoir Transmigration");
                 System.out.println(joueur.getVieFutureJoueur());
                 System.out.println("Quel est le nom de la carte à récuperer ?");
-                String name = entree.nextLine();
+                //String name = entree.nextLine();
                 //joueur.choix(entree, joueur.getVieFutureJoueur())
                 
-                joueur.getVieFutureJoueur().deplacerCarteParNom(name, joueur.getMainJoueur()); 
+                joueur.getVieFutureJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur()); 
                 System.out.println(joueur.getMainJoueur());
             } else {
             	System.out.println("Votre Vie Future est vide");
@@ -49,10 +49,10 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Deni");
             System.out.println(joueur.getMainJoueur());
             System.out.println("Voici votre main, quelle carte voulez-vous défausser et copier le pouvoir ?");
-            String name = entree.nextLine();
+            String name = joueur.choix(entree, joueur.getMainJoueur());
             while (name == "Deni") {
                 System.out.println("Vous ne pouvez pas copier cette carte");
-            	name = entree.nextLine();
+            	name = joueur.choix(entree, joueur.getMainJoueur());
             }
             joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, entree);
             joueur.getMainJoueur().deplacerCarteParNom(name, fosse);
@@ -117,8 +117,8 @@ public enum Pouvoirs {
                 System.out.println("La liste contient moins de trois éléments.");
             }
             System.out.println("Écrivez le nom de la carte que vous voulez récupérer :");
-            String name = entree.nextLine();
-            adversaire.getMainJoueur().deplacerCarteParNom(name, joueur.getMainJoueur());
+            //String name = entree.nextLine();
+            adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur());
             System.out.println("Voici votre nouvelle main :");
             System.out.println(joueur.getMainJoueur());
         }
@@ -146,8 +146,8 @@ public enum Pouvoirs {
                 System.out.println("La liste contient moins de trois éléments.");
             }
             System.out.println("Écrivez le nom de la carte que vous voulez récupérer :");
-            String name = entree.nextLine();
-            fosse.deplacerCarteParNom(name, joueur.getMainJoueur());
+            //String name = entree.nextLine();
+            fosse.deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur());
             System.out.println("Voici votre nouvelle main :");
             System.out.println(joueur.getMainJoueur());
         }
@@ -193,15 +193,15 @@ public enum Pouvoirs {
     },
     Jubile { //tested
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
-            System.out.println("Appliquer pouvoir Jubile");
+        	System.out.println("Appliquer pouvoir Jubile");
             System.out.println("Voici votre main, indiquez la premiere carte que vous souhaitez placer sur vos oeuvres");
             System.out.println(joueur.getMainJoueur());
-            String name = entree.nextLine();
-            joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
+            //String name = entree.nextLine();
+            joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getOeuvresJoueur());
             System.out.println("Voici votre main, indiquez la seconde carte que vous souhaitez placer sur vos oeuvres");
             System.out.println(joueur.getMainJoueur());
-            name = entree.nextLine();
-            joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
+            //name = entree.nextLine();
+            joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getOeuvresJoueur());
         }
     },
     DernierSouffle { //tested
@@ -209,8 +209,8 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir DernierSouffle");
             System.out.println("Voici votre main, la carte que votre adversaire vous fait defausser :");
             System.out.println(adversaire.getMainJoueur());
-            String name = entree.nextLine();
-            adversaire.getMainJoueur().deplacerCarteParNom(name, fosse);
+            //String name = entree.nextLine();
+            adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse);
         }
     },
     Crise { // tested
@@ -218,8 +218,8 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Crise");
             System.out.println("Voici votre main, indiquez la carte que vous souhaitez défausser");
             System.out.println(adversaire.getMainJoueur());
-            String name = entree.nextLine();
-            adversaire.getMainJoueur().deplacerCarteParNom(name, fosse);
+            //String name = entree.nextLine();
+            adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse);
             System.out.println(adversaire.getMainJoueur());
         
         }
@@ -263,16 +263,20 @@ public enum Pouvoirs {
             System.out.println("Voici votre main");
             System.out.println(adversaire.getMainJoueur());
             System.out.println("Combien de cartes souhaitez-vous défausser ? (jusqu'à 2)");
-            int nbChoix = entree.nextInt();
-            entree.nextLine();
+            //int nbChoix = entree.nextInt();
+            //entree.nextLine();
+            List<Integer> listeEntiers = Arrays.asList(0,1, 2);
+            int nbChoix = joueur.choix(entree, listeEntiers);
             for (int i=1; i<=nbChoix ; i++) {
             	System.out.println("Quel est le nom de la carte à défausser ?");
-                String name = entree.nextLine();
-                joueur.getMainJoueur().deplacerCarteParNom(name, fosse); 
+                //String name = entree.nextLine();
+                joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse); 
             }
             System.out.println("Combien de cartes souhaitez vous piocher (max : nombre de carte défaussées + 1)");
-            nbChoix = entree.nextInt();
-            entree.nextLine();
+            listeEntiers = Arrays.asList(0,1,2,3);
+            nbChoix = joueur.choix(entree, listeEntiers);
+            //nbChoix = entree.nextInt();
+            //entree.nextLine();
             for (int i=1; i<=nbChoix ; i++) {
             	source.distribuerCarteLaPlusHaute(joueur);
             }
@@ -295,8 +299,8 @@ public enum Pouvoirs {
             System.out.println("Appliquer pouvoir Incarnation");
             System.out.println("Voici vos oeuvres, indiquez la carte que vous souhaitez copier");
             System.out.println(joueur.getOeuvresJoueur());
-            String name = entree.nextLine();
-            joueur.getOeuvresJoueur().getCarteParNom(name).appliquerPouvoir(joueur,adversaire,source,fosse,coutKarmique,entree);
+            //String name = entree.nextLine();
+            joueur.getOeuvresJoueur().getCarteParNom(joueur.choix(entree, joueur.getMainJoueur())).appliquerPouvoir(joueur,adversaire,source,fosse,coutKarmique,entree);
             
         }
     },
