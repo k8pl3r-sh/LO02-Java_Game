@@ -2,7 +2,9 @@ package main;
 
 import cartes.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 import main.TypeCarte;
@@ -265,10 +267,10 @@ public class MoteurJeu {
         }
         
 	}
-
-	public static void main(String[] args) {
+	
+	public static List<Object> initialisation() {
+		List<Object> objets = new ArrayList<>();
 		
-		// Méthode génération partie à skip si on récupère objets sérialisés
 		Scanner scanner = new Scanner(System.in);
 		
 		Lieu source = new Lieu();
@@ -336,6 +338,38 @@ public class MoteurJeu {
 		
 		generationPiles(joueurs[0], source);
 		generationPiles(joueurs[1], source);
+		
+		objets.add(scanner);
+		objets.add(fosse);
+		objets.add(source);
+		objets.add(coutKarmique);
+		objets.add(joueurs);
+		return objets;
+	}
+
+	public static void main(String[] args) {
+		
+		// Faire choix nouvelle partie ou sauvegarde TODO 
+		
+		// Méthode génération partie à skip si on récupère objets sérialisés
+		if(0) { // Si sérialisation
+			
+			// A modifier, juste pour la compil
+			Scanner scanner = new Scanner(System.in);
+			Lieu source = new Lieu();
+			Lieu fosse = new Lieu();
+			Lieu coutKarmique = new Lieu();
+			Joueur[] joueurs = new Joueur[2];
+		}
+		else { // si nouvelle partie
+			List<Object> objets = initialisation();
+			Scanner scanner = (Scanner) objets.get(0);
+			Lieu fosse = (Lieu) objets.get(1);
+			Lieu source = (Lieu) objets.get(2);
+			Lieu coutKarmique = (Lieu) objets.get(3);
+			Joueur[] joueurs = (Joueur[]) objets.get(4);
+			
+		}
 		
 		// Fin d'initialisation
 		
