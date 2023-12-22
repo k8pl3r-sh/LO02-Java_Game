@@ -109,20 +109,20 @@ public class MoteurJeu {
 	}
 	
 
-	public static void reincarnation(Joueur joueur) {
+	public static void reincarnation(Joueur joueur, Lieu fosse, Lieu source) {
 		if(joueur.getMainJoueur().estVide() && joueur.getPileJoueur().estVide()) {
 		    switch (joueur.getniveauKarmique()) {
 		        case 0:
-		            evoluerNiveauKarmique(joueur, 4);
+		            evoluerNiveauKarmique(joueur, 4, fosse, source);
 		            break;
 		        case 1:
-		            evoluerNiveauKarmique(joueur, 5);
+		            evoluerNiveauKarmique(joueur, 5, fosse, source);
 		            break;
 		        case 2:
-		            evoluerNiveauKarmique(joueur, 6);
+		            evoluerNiveauKarmique(joueur, 6, fosse, source);
 		            break;
 		        case 3:
-		            evoluerNiveauKarmique(joueur, 7); // -> Transcendance
+		            evoluerNiveauKarmique(joueur, 7, fosse, source); // -> Transcendance
 		            break;
 		        default:
 		            System.out.println("Erreur");
@@ -131,30 +131,45 @@ public class MoteurJeu {
 		}
 	}
 	
-	public static void evoluerNiveauKarmique(Joueur joueur, int seuilPoints) {
+	public static void evoluerNiveauKarmique(Joueur joueur, int seuilPoints, Lieu fosse, Lieu source) {
 	    if (joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= seuilPoints) {
 	        joueur.setniveauKarmique();
 	    } 
 	    else if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() + joueur.getanneauxKarmique() >= seuilPoints){
 	        // demande choix utiliser anneaux karmiques
-	        // implémenter renaissance(joueur) ici ou appeler la méthode si nécessaire
+	        // implémenter renaissance(joueur, fosse) ici ou appeler la méthode si nécessaire
 	    }
 	    else {
 	    	System.out.println("Vous n'avez pas gagné de niveau sur l'échelle karmique");
 	    	joueur.setanneauxKarmique();
 	    }
 
-	    renaissance(joueur);
+	    renaissance(joueur, fosse, source);
 	}
 	
 	
-	public static void renaissance(Joueur joueur) {
+	public static void renaissance(Joueur joueur, Lieu fosse, Lieu source) { // à tester
 		// Reconstruction Main et Pile de jeu
 		// si renaissance -> fin de tour
-		// défausser oeuvres fosse
-		// cartes vie futur -> main
-		// si moins de 6 cartes Pile + Main : prendre source -> pile sans les voir pour 6 Pile + Main
-		;
+		// défausser oeuvres fosse 
+		while (!joueur.getOeuvresJoueur().estVide()) {
+			joueur.getOeuvresJoueur().deplacerCarte(fosse);
+	    }
+		
+		int i = 0;
+		while (!joueur.getVieFutureJoueur().estVide()) {
+			if(i> 4) {
+				joueur.getVieFutureJoueur().deplacerCarte(joueur.getPileJoueur());
+			}
+			else {
+				joueur.getVieFutureJoueur().deplacerCarte(joueur.getMainJoueur());
+			}
+			i += 1;
+		}
+		while(i<6) {
+			source.distribuerCarteLaPlusHaute(joueur);
+			i+= 1;
+		}
 	}
 	
 	public static boolean victoire(Joueur[] joueurs) {
@@ -323,7 +338,7 @@ public class MoteurJeu {
 			for (Joueur joueur : joueurs) {
 				System.out.println("C'est ton tour " + joueur.getNomJoueur());
 				
-				reincarnation(joueur);
+				reincarnation(joueur, fosse, source);
 				checkCoutKarmique(joueur, coutKarmique, fosse, scanner);
 				
 				if(!(joueur.getPileJoueur().estVide())) {
