@@ -5,6 +5,7 @@ import cartes.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 import main.TypeCarte;
@@ -202,19 +203,29 @@ public class MoteurJeu {
 		// Proposer choix au joueur de vie futur ou fosse
 		if(!coutKarmique.estVide()) {
 			// proposer au joueur de prendre la carte dans sa vie future
+			int choix = 1;
 			Carte cK = coutKarmique.retourneCarteLaPlusHaute();
 			System.out.println("Tu as cette carte que tu peux récupérer : " + cK.getNom());
 			System.out.println("1 - Je la veux pour ma vie future");
 			System.out.println("2 - Je ne la veux pas");
 			System.out.println("Ton choix :");
-			List<Integer> listeEntiers = List.of(1, 2);
-			int choix = joueur.choix(scanner, listeEntiers);
+			if (joueur.isBot()) {
+				Random random = new Random();   				        
+			    int nombreAleatoire = random.nextInt(2) + 1;
+			    choix = nombreAleatoire;
+			} else {
+				
+				List<Integer> listeEntiers = List.of(1, 2);
+				choix = joueur.choix(scanner, listeEntiers);
+			}
 			
 			if(choix == 1) {
 				coutKarmique.deplacerCarte(joueur.getVieFutureJoueur());
+				System.out.println("Tu as choisis de placer la carte dans ta vie Future");
 			}
 			else { // choix == 2
 				coutKarmique.deplacerCarte(fosse);
+				System.out.println("Tu as choisis de ne pas placer la carte dans ta vie Future");
 			}
 		}
 	}
@@ -232,33 +243,43 @@ public class MoteurJeu {
 		//Scanner scannerJouer = new Scanner(System.in)
 		System.out.println("Voici votre main :");;
 		System.out.println(joueur.getMainJoueur());
-    	
-    	System.out.println("Options : ");
-		System.out.println("1 - Jouer une carte pour son pouvoir");
-		System.out.println("2 - Joueur une carte pour ses points");
-		System.out.println("3 - Joueur une carte pour son futur");
-		System.out.print("Choix : ");
-		List<Integer> listeEntiers = List.of(1, 2, 3);
-        int choice = joueur.choix(scanner, listeEntiers);
-        
-		System.out.println("Quel est le nom de la carte à jouer ?");
-        String name = joueur.choix(scanner, joueur.getMainJoueur());
-
+    	int choice = 1;
+    	String name = null;
+		if(joueur.isBot()) {
+			Random random = new Random();   				        
+		    int nombreAleatoire = random.nextInt(3) + 1;
+		    choice = nombreAleatoire;
+			name = joueur.getMainJoueur().getTasCartes().getLast().getNom();
+		} else {
+			System.out.println("Options : ");
+			System.out.println("1 - Jouer une carte pour son pouvoir");
+			System.out.println("2 - Joueur une carte pour ses points");
+			System.out.println("3 - Joueur une carte pour son futur");
+			System.out.print("Choix : ");
+			List<Integer> listeEntiers = List.of(1, 2, 3);
+	        choice = joueur.choix(scanner, listeEntiers);
+	        
+			System.out.println("Quel est le nom de la carte à jouer ?");
+	        name = joueur.choix(scanner, joueur.getMainJoueur());
+		}
         
         switch (choice) {
             case 1: // Pouvoir OK
+            	System.out.println("Vous avez choisi de jouer une carte pour son pouvoir");
             	Joueur adversaire = getAdversaire(joueur, joueurs);
             	joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
             	coutKarmique.getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
                 break;
                 
             case 2: // Points OK
+            	System.out.println("Vous avez choisi de jouer une carte pour ses points");
                 joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
                 System.out.println(joueur.getOeuvresJoueur()); // visible de tous
                 System.out.println(joueur.getMainJoueur());
                 break;
                 
             case 3: // Futur OK
+            	System.out.println("Vous avez choisi de jouer une carte pour la mettre dans votre Vie Future");
                 joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
                 break;
                 
@@ -367,7 +388,7 @@ public class MoteurJeu {
 		int choix = scanner_temp.nextInt();
 		
 		// Méthode génération partie à skip si on récupère objets sérialisés
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 		/*
 		if(0) { // Si sérialisation
 =======
@@ -419,11 +440,18 @@ public class MoteurJeu {
 					System.out.println("1 - Piocher une carte");
 					System.out.println("2 - Passer son tour");
 					System.out.print("Choix : ");
-					List<Integer> listeEntiers = List.of(1, 2);
-					
-			        int choice = joueur.choix(scanner, listeEntiers);
+					int choice = 1;
+					if (joueur.isBot()) {
+					    Random random = new Random();   				        
+					    int nombreAleatoire = random.nextInt(2) + 1;
+					    choice = nombreAleatoire;
+					} else {
+						List<Integer> listeEntiers = List.of(1, 2);
+				        choice = joueur.choix(scanner, listeEntiers);
+					}
 			        switch(choice) {
 			        case 2 :
+			        	System.out.println("Vous avez choisi de passer votre tour");
 			        	break;
 			        case 1 : // Piocher carte
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);

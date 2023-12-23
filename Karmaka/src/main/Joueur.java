@@ -90,7 +90,14 @@ public class Joueur {
 	int choixJoueur;
 	if(bot) {
 	// implémenter la stratégie du bot
-	choixJoueur = 1;
+	// Création de l'objet Random
+    Random random = new Random();   
+        
+    // Obtention d'un index aléatoire dans la liste
+    int indexAleatoire = random.nextInt(listePoss.size());
+    // Obtention de la valeur correspondant à l'index aléatoire
+    int valeurAleatoire = listePoss.get(indexAleatoire);
+	choixJoueur = valeurAleatoire;
 	}
 	else {
 	// Joueur
@@ -111,9 +118,14 @@ public class Joueur {
 	// en paramètre : joueur.getMainJoueur()
 	String choixJoueur;
 	if(bot) { // SURCHARGE POUR String
-	// implémenter la stratégie du bot
-	// choixJoueur = tas.getCarteParNom(name);
-	choixJoueur = tas.retourneCarteLaPlusHaute(); // A CHANGER JUSTE POUR COMPIL
+		Random random = new Random();
+        
+        
+	    // Obtention d'un index aléatoire dans la liste
+	    int indexAleatoire = random.nextInt(tas.getTasCartes().size());
+	    // Obtention de la valeur correspondant à l'index aléatoire
+	    Carte valeurAleatoire = tas.getTasCartes().get(indexAleatoire);
+	    choixJoueur = valeurAleatoire.getNom(); // A CHANGER JUSTE POUR COMPIL
 	}
 	else {
 		// Joueur
