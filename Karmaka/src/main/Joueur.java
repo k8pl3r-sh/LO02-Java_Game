@@ -113,7 +113,7 @@ public class Joueur {
 	if(bot) { // SURCHARGE POUR String
 	// implémenter la stratégie du bot
 	// choixJoueur = tas.getCarteParNom(name);
-	choixJoueur = scanner.nextLine(); // A CHANGER JUSTE POUR COMPIL
+	choixJoueur = tas.retourneCarteLaPlusHaute(); // A CHANGER JUSTE POUR COMPIL
 	}
 	else {
 		// Joueur

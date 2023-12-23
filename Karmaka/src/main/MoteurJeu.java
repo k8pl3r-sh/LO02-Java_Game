@@ -248,8 +248,8 @@ public class MoteurJeu {
         switch (choice) {
             case 1: // Pouvoir OK
             	Joueur adversaire = getAdversaire(joueur, joueurs);
-            	joueur.getMainJoueur().getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
-                joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
+            	joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
+            	coutKarmique.getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
                 break;
                 
             case 2: // Points OK
@@ -297,8 +297,13 @@ public class MoteurJeu {
 		//source.deplacerCarte(fosse);
 		//source.deplacerCarte(fosse);
 		
+		// Lancement du jeu
+		System.out.println("#----------------------#");
+		System.out.println("Bienvenue dans Karmaka");
+		System.out.println("#----------------------#");
+		
 		// choix bot ou joueur
-		System.out.println("Options : ");
+		System.out.println("Choisissez un mode de jeu : ");
 		System.out.println("1 - 1V1 contre un joueur");
 		System.out.println("2 - 1V1 contre un robot");
 		System.out.println("3 - 1V1 entre 2 robots");
@@ -353,6 +358,7 @@ public class MoteurJeu {
 		// Faire choix nouvelle partie ou sauvegarde TODO 
 		
 		// Méthode génération partie à skip si on récupère objets sérialisés
+		/*
 		if(0) { // Si sérialisation
 			
 			// A modifier, juste pour la compil
@@ -370,15 +376,24 @@ public class MoteurJeu {
 			Lieu coutKarmique = (Lieu) objets.get(3);
 			Joueur[] joueurs = (Joueur[]) objets.get(4);
 			
-		}
+		}*/
+		List<Object> listeObjects = new ArrayList<>();
+		listeObjects = initialisation();
+		Scanner scanner = (Scanner) listeObjects.get(0);
 		
+		Lieu source = (Lieu) listeObjects.get(1);
+		Lieu fosse = (Lieu) listeObjects.get(2);
+		Lieu coutKarmique = (Lieu) listeObjects.get(3);
+		Joueur[] joueurs = (Joueur[]) listeObjects.get(4);
 		// Fin d'initialisation
 		
 		while (!victoire(joueurs)) { // Code à exécuter tant que la condition de victoire est fausse
-			
-			
 			for (Joueur joueur : joueurs) {
+				System.out.println("\n\n#----------------------#");
+				System.out.println("      Nouveau Tour");
+				System.out.println("#----------------------#");
 				System.out.println("C'est ton tour " + joueur.getNomJoueur());
+				System.out.println("Tu as " + joueur.getanneauxKarmique()+" anneaux Karmiques");
 				
 				reincarnation(joueur, fosse, source);
 				checkCoutKarmique(joueur, coutKarmique, fosse, scanner);
@@ -398,13 +413,12 @@ public class MoteurJeu {
 			        	break;
 			        case 1 : // Piocher carte
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
+			        	jouerCarte(joueurs, joueur, source, fosse, coutKarmique, scanner);
 			        default:
 		                System.out.println("Choix non valide");
 		                break;
 			        }
 				}
-			    
-				jouerCarte(joueurs, joueur, source, fosse, coutKarmique, scanner);
 			    		
 			} // loop des joueurs
 		
