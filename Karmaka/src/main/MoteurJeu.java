@@ -356,10 +356,23 @@ public class MoteurJeu {
 	public static void main(String[] args) {
 		
 		// Faire choix nouvelle partie ou sauvegarde TODO 
+		System.out.println("#---------------------------------#");
+		System.out.println("Bienvenue dans le jeu Karmaka");
+		System.out.println("#---------------------------------#");
+		System.out.println("Options : ");
+		System.out.println("1 - Nouvelle Partie");
+		System.out.println("2 - Charger Partie");
+		System.out.print("Choix : ");
+		Scanner scanner_temp = new Scanner(System.in);
+		int choix = scanner_temp.nextInt();
 		
 		// Méthode génération partie à skip si on récupère objets sérialisés
+<<<<<<< Updated upstream
 		/*
 		if(0) { // Si sérialisation
+=======
+		if(choix == 2) { // Si sérialisation
+>>>>>>> Stashed changes
 			
 			// A modifier, juste pour la compil
 			Scanner scanner = new Scanner(System.in);
@@ -370,6 +383,7 @@ public class MoteurJeu {
 		}
 		else { // si nouvelle partie
 			List<Object> objets = initialisation();
+			initialisation();
 			Scanner scanner = (Scanner) objets.get(0);
 			Lieu fosse = (Lieu) objets.get(1);
 			Lieu source = (Lieu) objets.get(2);
