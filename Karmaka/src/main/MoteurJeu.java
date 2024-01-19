@@ -60,8 +60,6 @@ public class MoteurJeu {
 		paquet.addCarte(new Carte("Sauvetage", Pouvoirs.Sauvetage, TypeCarte.VERT, 2));
 		paquet.addCarte(new Carte("Longevite", Pouvoirs.Longevite, TypeCarte.VERT, 2));
 		paquet.addCarte(new Carte("Mimetisme", Pouvoirs.Mimetisme, TypeCarte.MOSAIQUE, 1));
-		
-		///
 		paquet.addCarte(new Carte("Semis", Pouvoirs.Semis, TypeCarte.VERT, 2));
 		paquet.addCarte(new Carte("DernierSouffle", Pouvoirs.DernierSouffle, TypeCarte.ROUGE, 1));
 		paquet.addCarte(new Carte("Fournaise", Pouvoirs.Fournaise, TypeCarte.ROUGE, 2));
@@ -80,8 +78,6 @@ public class MoteurJeu {
 		paquet.addCarte(new Carte("Destinee", Pouvoirs.Destinee, TypeCarte.BLEU, 2));
 		paquet.addCarte(new Carte("RevesBrises", Pouvoirs.RevesBrises, TypeCarte.BLEU, 2));
 
-		
-		
 	}
 	
 	
@@ -287,23 +283,13 @@ public class MoteurJeu {
 		Lieu coutKarmique = new Lieu();
 
 		generationSource(source);
-		//source.melanger(); //à décommenter après debug
+		source.melanger();
 		
 		Joueur[] joueurs = new Joueur[2];
 		
 		
 		joueurs[0] = new Joueur();
 		joueurs[1] = new Joueur();
-		
-		// pour debug
-		// source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		//source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		//source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		//source.deplacerCarte(joueurs[0].getVieFutureJoueur());
-		//source.deplacerCarte(fosse);
-		//source.deplacerCarte(fosse);
-		//source.deplacerCarte(fosse);
-		//source.deplacerCarte(fosse);
 		
 		// Lancement du jeu
 		System.out.println("#----------------------#");
@@ -317,7 +303,7 @@ public class MoteurJeu {
 		System.out.println("3 - 1V1 entre 2 robots");
 		System.out.print("Choix : ");
 		List<Integer> liste3Entiers = List.of(1, 2);
-        int choix = joueurs[0].choix(scanner, liste3Entiers); // joueurs[0] juste pour profiter de la méthode
+        int choix = joueurs[0].choix(scanner, liste3Entiers);
         
         if(choix == 2) {
         	System.out.println("Vous allez jouez contre un robot");
@@ -325,9 +311,8 @@ public class MoteurJeu {
         }
         else if (choix == 1) {
         	System.out.println("Vous allez jouez contre un joueur");
-        	// rien à faire
         }
-        else { // choix == 3
+        else {
         	System.out.println("2 robots vont jouer l'un contre l'autre");
         	joueurs[0].setBot();
         	joueurs[1].setBot();
@@ -343,8 +328,8 @@ public class MoteurJeu {
         nomjoueur = scanner.nextLine();
         joueurs[1].setNomJoueur(nomjoueur);
         
-        System.out.println("Rappel : tapez 'exit' au lieu d'une carte pour quittter");
-        System.out.println("Rappel : tapez 'save' au lieu d'une carte pour sauvegarder");
+        System.out.println("Rappel (non implémenté) : tapez 'exit' au lieu d'une carte pour quitter");
+        System.out.println("Rappel (non implémenté) : tapez 'save' au lieu d'une carte pour sauvegarder");
         
         
         
@@ -375,30 +360,12 @@ public class MoteurJeu {
 		int choix = scanner_temp.nextInt();
 		
 		// Méthode génération partie à skip si on récupère objets sérialisés
-//<<<<<<< Updated upstream
-		/*
-		if(0) { // Si sérialisation
-=======
+
 		if(choix == 2) { // Si sérialisation
->>>>>>> Stashed changes
-			
-			// A modifier, juste pour la compil
-			Scanner scanner = new Scanner(System.in);
-			Lieu source = new Lieu();
-			Lieu fosse = new Lieu();
-			Lieu coutKarmique = new Lieu();
-			Joueur[] joueurs = new Joueur[2];
+			System.out.print("Cette option n'est pas implémentée");
 		}
-		else { // si nouvelle partie
-			List<Object> objets = initialisation();
-			initialisation();
-			Scanner scanner = (Scanner) objets.get(0);
-			Lieu fosse = (Lieu) objets.get(1);
-			Lieu source = (Lieu) objets.get(2);
-			Lieu coutKarmique = (Lieu) objets.get(3);
-			Joueur[] joueurs = (Joueur[]) objets.get(4);
-			
-		}*/
+		
+		
 		List<Object> listeObjects = new ArrayList<>();
 		listeObjects = initialisation();
 		Scanner scanner = (Scanner) listeObjects.get(0);
@@ -407,7 +374,7 @@ public class MoteurJeu {
 		Lieu fosse = (Lieu) listeObjects.get(2);
 		Lieu coutKarmique = (Lieu) listeObjects.get(3);
 		Joueur[] joueurs = (Joueur[]) listeObjects.get(4);
-		// Fin d'initialisation
+
 		
 		while (!victoire(joueurs)) { // Code à exécuter tant que la condition de victoire est fausse
 			for (Joueur joueur : joueurs) {

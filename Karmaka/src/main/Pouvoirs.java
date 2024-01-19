@@ -4,18 +4,13 @@ import java.util.*;
 
 import cartes.Carte;
 
-
-//import cartes.Carte;
-
 public enum Pouvoirs {
-    Transmigration { //erreur exec bizarre, demander à val
+    Transmigration { 
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             if(!joueur.getVieFutureJoueur().estVide()) {
             	System.out.println("Appliquer pouvoir Transmigration");
                 System.out.println(joueur.getVieFutureJoueur());
                 System.out.println("Quel est le nom de la carte à récuperer ?");
-                //String name = entree.nextLine();
-                //joueur.choix(entree, joueur.getVieFutureJoueur())
                 joueur.getVieFutureJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur()); 
                 System.out.println(joueur.getMainJoueur());
             } else {
@@ -23,7 +18,7 @@ public enum Pouvoirs {
             }
         }	
     },
-    CoupdOeil { // tested
+    CoupdOeil { 
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir CoupdOeil");
             System.out.println(adversaire.getMainJoueur());
@@ -31,7 +26,7 @@ public enum Pouvoirs {
             MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
         }
     },
-    RevesBrises { // à vérifier
+    RevesBrises { 
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir RevesBrises");
             if(!adversaire.getVieFutureJoueur().estVide()) {
@@ -43,7 +38,7 @@ public enum Pouvoirs {
             
         }
     },
-    Deni { //tested
+    Deni {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Deni");
             System.out.println(joueur.getMainJoueur());
@@ -57,7 +52,7 @@ public enum Pouvoirs {
             joueur.getMainJoueur().deplacerCarteParNom(name, fosse);
             }
     },
-    Vol { // à vérifier
+    Vol {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Vol");
             if(!adversaire.getOeuvresJoueur().estVide()) {
@@ -68,7 +63,7 @@ public enum Pouvoirs {
             }
         }
     },
-    Destinee { // tested
+    Destinee {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Destinee");
             int size = source.getTasCartes().size();
@@ -85,7 +80,7 @@ public enum Pouvoirs {
             List<Integer> listeNombre = List.of(1,2);
             System.out.println("Choisisez le nombre de carte que vous souhaitez mettre dans votre Vie Future");
             int nbChoix = joueur.choix(entree, listeNombre);
-            entree.nextLine(); // a implementer dans choix
+
             for (int i=1; i<=nbChoix ; i++) {
             	System.out.println("Quel est le nom de la carte à récuperer ?");
                 String name = entree.nextLine();
@@ -101,7 +96,7 @@ public enum Pouvoirs {
             System.out.println(joueur.getVieFutureJoueur());
         }
     },
-    Duperie { // tested
+    Duperie {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Duperie");
             int size = adversaire.getMainJoueur().getTasCartes().size();
@@ -116,13 +111,13 @@ public enum Pouvoirs {
                 System.out.println("La liste contient moins de trois éléments.");
             }
             System.out.println("Écrivez le nom de la carte que vous voulez récupérer :");
-            //String name = entree.nextLine();
+            
             adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur());
             System.out.println("Voici votre nouvelle main :");
             System.out.println(joueur.getMainJoueur());
         }
     },
-    Lendemain { // meme soucis
+    Lendemain {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Lendemain");
             source.distribuerCarteLaPlusHaute(joueur);
@@ -130,7 +125,7 @@ public enum Pouvoirs {
             MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
         }
     },
-    Sauvetage { //tested
+    Sauvetage {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Sauvetage");
             int size = fosse.getTasCartes().size();
@@ -145,20 +140,20 @@ public enum Pouvoirs {
                 System.out.println("La liste contient moins de trois éléments.");
             }
             System.out.println("Écrivez le nom de la carte que vous voulez récupérer :");
-            //String name = entree.nextLine();
+            
             fosse.deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getMainJoueur());
             System.out.println("Voici votre nouvelle main :");
             System.out.println(joueur.getMainJoueur());
         }
     },
-    Longevite { // tested
+    Longevite {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Longevite");
             source.deplacerCarte(adversaire.getPileJoueur());
             source.deplacerCarte(adversaire.getPileJoueur());
         }
     },
-    Recyclage { // à vérifier
+    Recyclage {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             fosse.deplacerCarte(joueur.getVieFutureJoueur());
             fosse.deplacerCarte(joueur.getVieFutureJoueur());
@@ -173,15 +168,13 @@ public enum Pouvoirs {
             System.out.println("Voici votre nouvelle main :");
             System.out.println(joueur.getMainJoueur());
             System.out.println("Quelle est la premiere carte que vous souhaitez placer dans votre Vie Future ?");
-            //String name = entree.nextLine();
-            //joueur.choix(entree, joueur.getMainJoueur())
             joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getVieFutureJoueur());
             System.out.println("Quelle est la seconde carte que vous souhaitez placer dans votre Vie Future ?");
-            // name = entree.nextLine();
+
             joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getVieFutureJoueur());
         }
     },
-    Voyage { // tested
+    Voyage {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Voyage");
             source.distribuerCarteLaPlusHaute(joueur);
@@ -190,40 +183,39 @@ public enum Pouvoirs {
             System.out.println(joueur.getMainJoueur());
         }
     },
-    Jubile { //tested
+    Jubile {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
         	System.out.println("Appliquer pouvoir Jubile");
             System.out.println("Voici votre main, indiquez la premiere carte que vous souhaitez placer sur vos oeuvres");
             System.out.println(joueur.getMainJoueur());
-            //String name = entree.nextLine();
+            
             joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getOeuvresJoueur());
             System.out.println("Voici votre main, indiquez la seconde carte que vous souhaitez placer sur vos oeuvres");
             System.out.println(joueur.getMainJoueur());
-            //name = entree.nextLine();
+           
             joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getOeuvresJoueur());
         }
     },
-    DernierSouffle { //tested
+    DernierSouffle {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir DernierSouffle");
             System.out.println("Voici votre main, la carte que votre adversaire vous fait defausser :");
             System.out.println(adversaire.getMainJoueur());
-            //String name = entree.nextLine();
+           
             adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse);
         }
     },
-    Crise { // OK
+    Crise {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Crise");
             System.out.println("Voici votre main, indiquez la carte que vous souhaitez défausser");
             System.out.println(adversaire.getMainJoueur());
-            //String name = entree.nextLine();
             adversaire.getMainJoueur().deplacerCarteParNom(adversaire.choix(entree, adversaire.getMainJoueur()), fosse);
             System.out.println(adversaire.getMainJoueur());
         
         }
     },
-    Fournaise { // tested mais attention à la gestion d'erreur quand c'est vide :  java.util.InputMismatchException
+    Fournaise {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Fournaise");
             if(!adversaire.getVieFutureJoueur().estVide()) {
@@ -238,7 +230,7 @@ public enum Pouvoirs {
             }
         }
     },
-    Vengeance { // tested mais attention à la gestion d'erreur quand c'est vide :  java.util.InputMismatchException
+    Vengeance {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Vengeance");
             if(!adversaire.getOeuvresJoueur().estVide()) {
@@ -256,33 +248,29 @@ public enum Pouvoirs {
             }
         }
     },
-    Roulette { // tested
+    Roulette {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Roulette");
             System.out.println("Voici votre main");
             System.out.println(adversaire.getMainJoueur());
             System.out.println("Combien de cartes souhaitez-vous défausser ? (jusqu'à 2)");
-            //int nbChoix = entree.nextInt();
-            //entree.nextLine();
             List<Integer> listeEntiers = Arrays.asList(0,1,2);
             int nbChoix = joueur.choix(entree, listeEntiers);
             for (int i=1; i<=nbChoix ; i++) {
             	System.out.println("Quel est le nom de la carte à défausser ?");
-                //String name = entree.nextLine();
             	System.out.println(joueur.getMainJoueur());
                 joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse); 
             }
             System.out.println("Combien de cartes souhaitez vous piocher (max : nombre de carte défaussées + 1)");
             listeEntiers = Arrays.asList(0,1,2,3);
             nbChoix = joueur.choix(entree, listeEntiers);
-            //nbChoix = entree.nextInt();
-            //entree.nextLine();
+
             for (int i=1; i<=nbChoix ; i++) {
             	source.distribuerCarteLaPlusHaute(joueur);
             }
         }
     },
-    Bassesse { //tested
+    Bassesse {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Bassesse");
             System.out.println("2 cartes aléatoire de la main de votre rival on été défaussées");
@@ -294,17 +282,16 @@ public enum Pouvoirs {
             }
         }
     },
-    Incarnation { //tested
+    Incarnation {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Incarnation");
             System.out.println("Voici vos oeuvres, indiquez la carte que vous souhaitez copier");
             System.out.println(joueur.getOeuvresJoueur());
-            //String name = entree.nextLine();
             joueur.getOeuvresJoueur().getCarteParNom(joueur.choix(entree, joueur.getMainJoueur())).appliquerPouvoir(joueur,adversaire,source,fosse,coutKarmique,entree);
             
         }
     },
-    Mimetisme { // à vérifier
+    Mimetisme {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Mimetisme");
             if(!adversaire.getOeuvresJoueur().estVide()) {
