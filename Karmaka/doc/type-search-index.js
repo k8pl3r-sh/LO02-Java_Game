@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"main","l":"MoteurJeu"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"cartes","l":"Carte"},{"p":"main","l":"Joueur"},{"p":"main","l":"Lieu"},{"p":"main","l":"MoteurJeu"},{"p":"main","l":"Pouvoirs"},{"p":"main","l":"Sauvegarde"},{"p":"main","l":"TypeCarte"}];updateSearchResults();
