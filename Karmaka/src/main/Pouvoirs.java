@@ -4,7 +4,15 @@ import java.util.*;
 
 import cartes.Carte;
 
+/**
+ * Enumération représentant les pouvoirs associés aux cartes.
+ */
 public enum Pouvoirs {
+	/**
+     * Pouvoir de Transmigration.
+     * Si la Vie Future du joueur n'est pas vide, permet de récupérer une carte de la Vie Future
+     * et de la placer dans la main du joueur.
+     */
     Transmigration { 
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             if(!joueur.getVieFutureJoueur().estVide()) {
@@ -18,6 +26,10 @@ public enum Pouvoirs {
             }
         }	
     },
+    /**
+     * Pouvoir de Coup d'Oeil.
+     * Permet d'observer la main de l'adversaire et de jouer une carte de son choix.
+     */
     CoupdOeil { 
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir CoupdOeil");
@@ -26,6 +38,11 @@ public enum Pouvoirs {
             MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
         }
     },
+    /**
+     * Pouvoir de Rêves Brisés.
+     * Si la Vie Future de l'adversaire n'est pas vide, permet de déplacer une carte de la Vie Future
+     * de l'adversaire dans la Vie Future du joueur.
+     */
     RevesBrises { 
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir RevesBrises");
@@ -38,6 +55,10 @@ public enum Pouvoirs {
             
         }
     },
+    /**
+     * Pouvoir de Déni.
+     * Permet de défausser une carte de la main du joueur et de copier le pouvoir de cette carte.
+     */
     Deni {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Deni");
@@ -52,6 +73,11 @@ public enum Pouvoirs {
             joueur.getMainJoueur().deplacerCarteParNom(name, fosse);
             }
     },
+    /**
+     * Pouvoir de Vol.
+     * Si les Œuvres de l'adversaire ne sont pas vides, permet de déplacer une carte des Œuvres
+     * de l'adversaire dans la main du joueur.
+     */
     Vol {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Vol");
@@ -63,6 +89,11 @@ public enum Pouvoirs {
             }
         }
     },
+    /**
+     * Pouvoir de Destinée.
+     * Affiche les trois dernières cartes du lieu source et permet au joueur de choisir certaines cartes
+     * pour les déplacer dans sa Vie Future. Le joueur peut également choisir de mélanger le lieu source.
+     */
     Destinee {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Destinee");
@@ -96,6 +127,11 @@ public enum Pouvoirs {
             System.out.println(joueur.getVieFutureJoueur());
         }
     },
+    /**
+     * Pouvoir de Duperie.
+     * Affiche les trois dernières cartes de la main de l'adversaire et permet au joueur de choisir une carte
+     * à récupérer dans sa propre main.
+     */
     Duperie {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Duperie");
@@ -117,6 +153,10 @@ public enum Pouvoirs {
             System.out.println(joueur.getMainJoueur());
         }
     },
+    /**
+     * Pouvoir de Lendemain.
+     * Distribue la carte la plus haute du lieu source au joueur et lui permet de jouer une carte.
+     */
     Lendemain {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Lendemain");
@@ -125,6 +165,11 @@ public enum Pouvoirs {
             MoteurJeu.jouerCarte(listeJoueurs, joueur, source, fosse, coutKarmique, entree);
         }
     },
+    /**
+     * Pouvoir de Sauvetage.
+     * Affiche les trois dernières cartes de la fosse et permet au joueur de choisir une carte
+     * à récupérer dans sa propre main.
+     */
     Sauvetage {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Sauvetage");
@@ -146,6 +191,10 @@ public enum Pouvoirs {
             System.out.println(joueur.getMainJoueur());
         }
     },
+    /**
+     * Pouvoir de Longévité.
+     * Déplace deux cartes de la source vers la pile du joueur adversaire.
+     */
     Longevite {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Longevite");
@@ -153,6 +202,10 @@ public enum Pouvoirs {
             source.deplacerCarte(adversaire.getPileJoueur());
         }
     },
+    /**
+     * Pouvoir de Recyclage.
+     * Déplace trois cartes de la fosse vers la Vie Future du joueur.
+     */
     Recyclage {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             fosse.deplacerCarte(joueur.getVieFutureJoueur());
@@ -160,7 +213,12 @@ public enum Pouvoirs {
             fosse.deplacerCarte(joueur.getVieFutureJoueur());
         }
     },
-    Semis { //tested
+    /**
+     * Pouvoir de Semis.
+     * Distribue deux cartes les plus hautes du lieu source au joueur, puis lui permet de placer
+     * deux cartes de sa main dans sa Vie Future.
+     */
+    Semis {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Semis");
             source.distribuerCarteLaPlusHaute(joueur);
@@ -174,6 +232,10 @@ public enum Pouvoirs {
             joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getVieFutureJoueur());
         }
     },
+    /**
+     * Pouvoir de Voyage.
+     * Distribue trois cartes les plus hautes du lieu source au joueur.
+     */
     Voyage {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Voyage");
@@ -183,6 +245,10 @@ public enum Pouvoirs {
             System.out.println(joueur.getMainJoueur());
         }
     },
+    /**
+     * Pouvoir Jubile.
+     * Permet au joueur de placer deux cartes de sa main sur ses œuvres.
+     */
     Jubile {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
         	System.out.println("Appliquer pouvoir Jubile");
@@ -196,6 +262,10 @@ public enum Pouvoirs {
             joueur.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), joueur.getOeuvresJoueur());
         }
     },
+    /**
+     * Pouvoir DernierSouffle.
+     * Force l'adversaire à défausser une carte de la main du joueur.
+     */
     DernierSouffle {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir DernierSouffle");
@@ -205,6 +275,10 @@ public enum Pouvoirs {
             adversaire.getMainJoueur().deplacerCarteParNom(joueur.choix(entree, joueur.getMainJoueur()), fosse);
         }
     },
+    /**
+     * Pouvoir Crise.
+     * Force l'adversaire à défausser une carte de sa main.
+     */
     Crise {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Crise");
@@ -215,6 +289,10 @@ public enum Pouvoirs {
         
         }
     },
+    /**
+     * Pouvoir Fournaise.
+     * Déplace jusqu'à deux cartes de la Vie Future de l'adversaire vers la fosse.
+     */
     Fournaise {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Fournaise");
@@ -230,6 +308,10 @@ public enum Pouvoirs {
             }
         }
     },
+    /**
+     * Pouvoir Vengeance.
+     * Déplace une carte des œuvres de l'adversaire vers la fosse.
+     */
     Vengeance {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Vengeance");
@@ -238,6 +320,10 @@ public enum Pouvoirs {
             }
         }
     },
+    /**
+     * Pouvoir Panique.
+     * Force l'adversaire à défausser une carte de sa pile.
+     */
     Panique { 
     	public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Panique");
@@ -248,6 +334,10 @@ public enum Pouvoirs {
             }
         }
     },
+    /**
+     * Pouvoir Roulette.
+     * Permet au joueur de défausser des cartes de sa main et de piocher un nombre équivalent de cartes.
+     */
     Roulette {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Roulette");
@@ -270,6 +360,10 @@ public enum Pouvoirs {
             }
         }
     },
+    /**
+     * Pouvoir Bassesse.
+     * Force l'adversaire à défausser deux cartes aléatoires de sa main.
+     */
     Bassesse {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Bassesse");
@@ -282,6 +376,10 @@ public enum Pouvoirs {
             }
         }
     },
+    /**
+     * Pouvoir Incarnation.
+     * Permet au joueur de copier le pouvoir d'une de ses cartes d'œuvres.
+     */
     Incarnation {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Appliquer pouvoir Incarnation");
@@ -291,6 +389,11 @@ public enum Pouvoirs {
             
         }
     },
+    
+    /**
+     * Pouvoir Mimetisme.
+     * Permet au joueur de copier le pouvoir de la carte la plus haute des œuvres de l'adversaire.
+     */
     Mimetisme {
         public void appliquerPouvoir(Joueur joueur, Joueur adversaire, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner entree) {
             System.out.println("Application pouvoir Mimetisme");

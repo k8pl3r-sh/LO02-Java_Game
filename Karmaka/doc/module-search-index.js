@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"test_projet_LO02"}];updateSearchResults();
+moduleSearchIndex = [];updateSearchResults();

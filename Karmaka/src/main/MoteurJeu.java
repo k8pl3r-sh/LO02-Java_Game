@@ -10,8 +10,15 @@ import java.util.Scanner;
 
 import main.TypeCarte;
 
+/**
+ * Classe MoteurJeu définit la manière dont le jeu doit s'initialiser et fonctionner
+ */
 public class MoteurJeu {
 
+	/**
+	 * Génère les cartes de la source (paquet) au début du jeu.
+	 * @param paquet Lieu représentant la source de cartes.
+	 */
 	public static void generationSource(Lieu paquet) {
 		
 		paquet.addCarte(new Carte("Transmigration", Pouvoirs.Transmigration, TypeCarte.BLEU, 1));
@@ -80,9 +87,12 @@ public class MoteurJeu {
 
 	}
 	
-	
+	/**
+	 * Génère les piles du joueur au début du jeu.
+	 * @param joueur Joueur pour lequel générer les piles.
+	 * @param source Lieu représentant la source de cartes.
+	 */
 	public static void generationPiles(Joueur joueur, Lieu source) {
-		// Génération des différentes piles pour un joueur donné au démarrage de la partie 
 		
 		// 4 cartes à mettre dans la main 
 		for (int i = 0; i < 4; i++) {
@@ -95,6 +105,12 @@ public class MoteurJeu {
 	}
 	
 
+	/**
+	 * Effectue le processus de réincarnation du joueur.
+	 * @param joueur Joueur concerné par la réincarnation.
+	 * @param fosse Lieu représentant la fosse de cartes.
+	 * @param source Lieu représentant la source de cartes.
+	 */
 	public static void reincarnation(Joueur joueur, Lieu fosse, Lieu source) {
 		if(joueur.getMainJoueur().estVide() && joueur.getPileJoueur().estVide()) {
 		    switch (joueur.getniveauKarmique()) {
@@ -108,7 +124,7 @@ public class MoteurJeu {
 		            evoluerNiveauKarmique(joueur, 6, fosse, source);
 		            break;
 		        case 3:
-		            evoluerNiveauKarmique(joueur, 7, fosse, source); // -> Transcendance
+		            evoluerNiveauKarmique(joueur, 7, fosse, source); // Transcendance
 		            break;
 		        default:
 		            System.out.println("Erreur");
@@ -117,12 +133,18 @@ public class MoteurJeu {
 		}
 	}
 	
+	/**
+	 * Évolue le niveau karmique du joueur en fonction du seuil de points à atteindre.
+	 * @param joueur Joueur dont le niveau karmique doit évoluer.
+	 * @param seuilPoints Seuil de points à atteindre pour évoluer.
+	 * @param fosse Lieu représentant la fosse.
+	 * @param source Lieu représentant la source.
+	 */
 	public static void evoluerNiveauKarmique(Joueur joueur, int seuilPoints, Lieu fosse, Lieu source) {
 	    if (joueur.getOeuvresJoueur().sommeMaxParTypeCarte() >= seuilPoints) {
 	        joueur.setniveauKarmique();
 	    } 
 	    else if(joueur.getOeuvresJoueur().sommeMaxParTypeCarte() + joueur.getanneauxKarmique() >= seuilPoints){
-	        // demande choix utiliser anneaux karmiques
 	    	int utilise = seuilPoints - joueur.getOeuvresJoueur().sommeMaxParTypeCarte();
 	    	joueur.setanneauxKarmique(utilise);
 	        
@@ -135,11 +157,13 @@ public class MoteurJeu {
 	    renaissance(joueur, fosse, source);
 	}
 	
-	
-	public static void renaissance(Joueur joueur, Lieu fosse, Lieu source) { // à tester
-		// Reconstruction Main et Pile de jeu
-		// si renaissance -> fin de tour
-		// défausser oeuvres fosse 
+	/**
+	 * Effectue le processus de renaissance du joueur.
+	 * @param joueur Joueur concerné par la renaissance.
+	 * @param fosse Lieu représentant la fosse de cartes.
+	 * @param source Lieu représentant la source de cartes.
+	 */
+	public static void renaissance(Joueur joueur, Lieu fosse, Lieu source) {
 		while (!joueur.getOeuvresJoueur().estVide()) {
 			joueur.getOeuvresJoueur().deplacerCarte(fosse);
 	    }
@@ -160,8 +184,12 @@ public class MoteurJeu {
 		}
 	}
 	
+	/**
+ * Vérifie si l'un des joueurs a atteint le niveau karmique maximum (4).
+ * @param joueurs Tableau des joueurs à vérifier.
+ * @return true si l'un des joueurs a gagné, false sinon.
+ */
 	public static boolean victoire(Joueur[] joueurs) {
-		// Appelée au début de chaque loop de jeu
 		for (Joueur joueur : joueurs) {
 			if(joueur.getniveauKarmique() == 4) {
 				return true;
@@ -170,8 +198,12 @@ public class MoteurJeu {
 		return false;
 	}
 	
+	/**
+	 * Récupère le nom du joueur victorieux, s'il y en a un. Cette fonction n'est appelée que lorsque une condition de victoire est remplie.
+	 * @param joueurs Tableau des joueurs à vérifier.
+	 * @return Le nom du joueur victorieux (sinon une chaîne de caractères par défaut).
+	 */
 	public static String getJoueurVictorieux(Joueur[] joueurs) {
-		// Appelée au début de chaque loop de jeu
 		for (Joueur joueur : joueurs) {
 			if(joueur.getniveauKarmique() == 4) {
 				return joueur.getNomJoueur();
@@ -180,12 +212,17 @@ public class MoteurJeu {
 		return "Pour faire plaisir au compilateur";
 	}
 
-	
+	/**
+	 * Vérifie et gère le cas où le lieu de coût karmique n'est pas vide.
+	 * Propose au joueur de récupérer la carte dans sa vie future ou dans la fosse.
+	 * @param joueur Joueur actuel.
+	 * @param coutKarmique Lieu représentant le coût karmique.
+	 * @param fosse Lieu représentant la fosse de cartes.
+	 * @param scanner Scanner pour la saisie utilisateur.
+	 */
 	public static void checkCoutKarmique(Joueur joueur, Lieu coutKarmique, Lieu fosse, Scanner scanner) {
-		// if coutKarmique not empty
-		// Proposer choix au joueur de vie futur ou fosse
+
 		if(!coutKarmique.estVide()) {
-			// proposer au joueur de prendre la carte dans sa vie future
 			int choix = 1;
 			Carte cK = coutKarmique.retourneCarteLaPlusHaute();
 			System.out.println("Tu as cette carte que tu peux récupérer : " + cK.getNom());
@@ -213,8 +250,13 @@ public class MoteurJeu {
 		}
 	}
 	
+	/**
+	 * Obtient l'adversaire du joueur parmi les joueurs spécifiés (2 joueurs par défaut).
+	 * @param joueur Joueur actuel.
+	 * @param joueurs Tableau des joueurs.
+	 * @return L'adversaire du joueur.
+	 */
 	public static Joueur getAdversaire(Joueur joueur, Joueur[] joueurs) {
-		// On peut implémenter le choix des adversaires si > 2 joueurs
 		if(joueurs[0] == joueur) {
 			return joueurs[1];
 		}
@@ -222,8 +264,16 @@ public class MoteurJeu {
 	}
 	
 	
+	/**
+ * Permet au joueur de jouer une carte de sa main.
+ * @param joueurs Tableau des joueurs.
+ * @param joueur Joueur actuel.
+ * @param source Lieu source de cartes.
+ * @param fosse Lieu de défausse.
+ * @param coutKarmique Lieu représentant le coût karmique.
+ * @param scanner Scanner pour la saisie utilisateur.
+ */
 	public static void jouerCarte(Joueur[] joueurs, Joueur joueur, Lieu source, Lieu fosse, Lieu coutKarmique, Scanner scanner) {
-		//Scanner scannerJouer = new Scanner(System.in)
 		System.out.println("Voici votre main :");;
 		System.out.println(joueur.getMainJoueur());
     	int choice = 1;
@@ -247,21 +297,21 @@ public class MoteurJeu {
 		}
         
         switch (choice) {
-            case 1: // Pouvoir OK
+            case 1:
             	System.out.println("Vous avez choisi de jouer une carte pour son pouvoir");
             	Joueur adversaire = getAdversaire(joueur, joueurs);
             	joueur.getMainJoueur().deplacerCarteParNom(name, coutKarmique);
             	coutKarmique.getCarteParNom(name).appliquerPouvoir(joueur, adversaire, source, fosse, coutKarmique, scanner);
                 break;
                 
-            case 2: // Points OK
+            case 2:
             	System.out.println("Vous avez choisi de jouer une carte pour ses points");
                 joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getOeuvresJoueur());
                 System.out.println(joueur.getOeuvresJoueur()); // visible de tous
                 System.out.println(joueur.getMainJoueur());
                 break;
                 
-            case 3: // Futur OK
+            case 3:
             	System.out.println("Vous avez choisi de jouer une carte pour la mettre dans votre Vie Future");
                 joueur.getMainJoueur().deplacerCarteParNom(name, joueur.getVieFutureJoueur());
                 break;
@@ -273,6 +323,10 @@ public class MoteurJeu {
         
 	}
 	
+	/**
+	 * Effectue les étapes d'initialisation du jeu.
+	 * @return Une liste d'objets contenant le scanner, la fosse, la source, le lieu de coût karmique et les joueurs.
+	 */
 	public static List<Object> initialisation() {
 		List<Object> objets = new ArrayList<>();
 		
@@ -346,9 +400,11 @@ public class MoteurJeu {
 		return objets;
 	}
 
+	/**
+	 * Méthode permettant de faire fonctionner le jeu
+	 */
 	public static void main(String[] args) {
 		
-		// Faire choix nouvelle partie ou sauvegarde TODO 
 		System.out.println("#---------------------------------#");
 		System.out.println("Bienvenue dans le jeu Karmaka");
 		System.out.println("#---------------------------------#");
@@ -359,8 +415,6 @@ public class MoteurJeu {
 		Scanner scanner_temp = new Scanner(System.in);
 		int choix = scanner_temp.nextInt();
 		
-		// Méthode génération partie à skip si on récupère objets sérialisés
-
 		if(choix == 2) { // Si sérialisation
 			System.out.print("Cette option n'est pas implémentée");
 		}
@@ -407,7 +461,7 @@ public class MoteurJeu {
 			        case 2 :
 			        	System.out.println("Vous avez choisi de passer votre tour");
 			        	break;
-			        case 1 : // Piocher carte
+			        case 1 :
 			        	joueur.getPileJoueur().distribuerCarteLaPlusHaute(joueur);
 			        	jouerCarte(joueurs, joueur, source, fosse, coutKarmique, scanner);
 			        default:
@@ -416,9 +470,9 @@ public class MoteurJeu {
 			        }
 				}
 			    		
-			} // loop des joueurs
+			}
 		
-	    } // loop de jeu
+	    }
 		System.out.println("Victoire de " + getJoueurVictorieux(joueurs));
 		scanner.close();
 		}
